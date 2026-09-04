@@ -1,0 +1,117 @@
+<div class="daily-reports-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Daily Business Reports</h1>
+            <p class="text-muted">Consolidated daily snapshot of revenue, operating costs, net profit, staff attendance, advances, and invoice totals.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-outline" id="btnPrintDailyReport">
+                <i class="fas fa-print"></i> Print Daily Summary
+            </button>
+        </div>
+    </div>
+
+    <!-- Date Picker Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Select Report Date:</label>
+                    <input type="date" class="form-control" id="dailyReportDateInput">
+                </div>
+                <div class="col-md-8 text-end pt-3">
+                    <span class="text-muted">Report Number:</span>
+                    <strong class="fs-5 text-primary ms-2" id="dailyReportNumberDisplay">RMS-REP-TODAY</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Financial Highlights -->
+    <div class="dashboard-cards mb-4">
+        <div class="stat-card">
+            <div class="stat-card-icon income"><i class="fas fa-arrow-down"></i></div>
+            <div class="stat-card-value text-success" id="drIncome">0.00</div>
+            <div class="stat-card-label">Total Daily Income</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-icon expense"><i class="fas fa-arrow-up"></i></div>
+            <div class="stat-card-value text-danger" id="drExpenses">0.00</div>
+            <div class="stat-card-label">Total Daily Expenses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-icon profit"><i class="fas fa-chart-line"></i></div>
+            <div class="stat-card-value" id="drProfit">0.00</div>
+            <div class="stat-card-label">Daily Net Profit</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-icon invoice"><i class="fas fa-file-invoice"></i></div>
+            <div class="stat-card-value text-primary" id="drInvoices">0</div>
+            <div class="stat-card-label">Invoices Created</div>
+        </div>
+    </div>
+
+    <!-- Detailed Snapshot Sections -->
+    <div class="row g-4">
+        <!-- Staff Operations -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-users me-2"></i> Staff & Workforce Summary</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total Active Staff</span>
+                            <strong id="drTotalStaff">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-success">
+                            <span>Present on Duty</span>
+                            <strong id="drPresentStaff">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-danger">
+                            <span>Absent</span>
+                            <strong id="drAbsentStaff">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-info">
+                            <span>On Approved Leave</span>
+                            <strong id="drLeaveStaff">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-warning">
+                            <span>Total Salary Advances Issued Today</span>
+                            <strong id="drAdvanceTotal">0.00</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales & Invoices Summary -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-cart me-2"></i> Sales & Settlement Snapshot</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total Invoices Generated</span>
+                            <strong id="drTotalInvoices">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-success">
+                            <span>Paid Invoices</span>
+                            <strong id="drPaidInvoices">0</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between text-danger">
+                            <span>Pending / Unpaid Invoices</span>
+                            <strong id="drPendingInvoices">0</strong>
+                        </li>
+                    </ul>
+                    <div class="alert alert-info mt-3 mb-0" role="alert">
+                        <i class="fas fa-info-circle me-1"></i> Net profit is automatically calculated as: <strong>Total Income - Total Expenses</strong>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

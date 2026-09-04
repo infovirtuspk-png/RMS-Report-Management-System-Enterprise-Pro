@@ -1,0 +1,110 @@
+<div class="customers-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Customer Management</h1>
+            <p class="text-muted">Client profiles, billing details, VAT numbers, invoice histories, and accounts receivable.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary" id="btnAddCustomer">
+                <i class="fas fa-user-plus"></i> Add New Customer
+            </button>
+        </div>
+    </div>
+
+    <!-- Search / Filter -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="customerSearchInput" placeholder="Search customer by name, company, phone, email, or TRN...">
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-outline" id="btnRefreshCustomers"><i class="fas fa-sync-alt"></i> Refresh List</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Table -->
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Customer Name</th>
+                            <th>Company</th>
+                            <th>Phone / WhatsApp</th>
+                            <th>Email</th>
+                            <th>City / Country</th>
+                            <th>Tax / TRN #</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customersTableBody">
+                        <tr><td colspan="8" class="text-center py-4 text-muted">Loading customers...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Customer Modal -->
+<div class="modal fade" id="customerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerModalTitle">Add New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="customerForm">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label required">Customer Name</label>
+                            <input type="text" class="form-control" id="custName" required placeholder="e.g. Ahmed Al Mansoori">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="custCompany" placeholder="e.g. Al Mansoori Trading LLC">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Phone Number</label>
+                            <input type="text" class="form-control" id="custPhone" required placeholder="+971 50 000 0000">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">WhatsApp</label>
+                            <input type="text" class="form-control" id="custWhatsapp" placeholder="+971 50 000 0000">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="custEmail" placeholder="client@domain.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tax / VAT / TRN Number</label>
+                            <input type="text" class="form-control" id="custTaxNumber" placeholder="100XXXXXXXXXXXX">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Country</label>
+                            <input type="text" class="form-control" id="custCountry" placeholder="United Arab Emirates">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Address / Location</label>
+                            <input type="text" class="form-control" id="custAddress" placeholder="Deira, Dubai">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Notes</label>
+                            <input type="text" class="form-control" id="custNotes" placeholder="Additional remarks...">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

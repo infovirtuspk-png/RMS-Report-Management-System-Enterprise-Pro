@@ -1,0 +1,54 @@
+<div class="performance-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Staff Performance & Evaluation</h1>
+            <p class="text-muted">Attendance rates, punctuality, overtime metrics, payroll history, and staff efficiency scoring.</p>
+        </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-center g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Select Month / Period:</label>
+                    <input type="month" class="form-control" id="perfMonthFilter">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Department:</label>
+                    <select class="form-select" id="perfDeptFilter">
+                        <option value="">All Departments</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" id="btnRefreshPerf"><i class="fas fa-chart-line"></i> Evaluate Performance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Cards Grid -->
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="performanceTable">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Department</th>
+                            <th>Attendance %</th>
+                            <th>Present / Absent</th>
+                            <th>Late Days</th>
+                            <th>Overtime Hours</th>
+                            <th>Performance Score</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="performanceTableBody">
+                        <tr><td colspan="8" class="text-center py-4 text-muted">Loading employee evaluations...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

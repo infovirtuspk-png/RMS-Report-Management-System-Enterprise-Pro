@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: https: file:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; img-src 'self' data: https: file:;">
+    <title>RMS Setup — Create Administrator Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.3);
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.35);
+            --bg-dark: #090d16;
+            --card-bg: rgba(17, 24, 39, 0.84);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 15% 15%, #1e1b4b 0%, #0c1222 45%, #020617 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 24px;
+            color: var(--text-main);
+        }
+
+        /* Ambient Animated Glowing Orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.42;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 16s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 480px;
+            height: 480px;
+            background: #6366f1;
+            top: -140px;
+            left: -120px;
+        }
+
+        .orb-2 {
+            width: 420px;
+            height: 420px;
+            background: #06b6d4;
+            bottom: -100px;
+            right: -100px;
+            animation-duration: 20s;
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: #8b5cf6;
+            top: 45%;
+            left: 55%;
+            animation-duration: 13s;
+            animation-delay: -2s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -30px) scale(1.06); }
+            100% { transform: translate(-30px, 40px) scale(0.96); }
+        }
+
+        /* Main Admin Container */
+        .admin-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 580px;
+            background: var(--card-bg);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 40px rgba(99, 102, 241, 0.15);
+            padding: 38px 40px;
+            animation: cardEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Header */
+        .admin-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-icon-box {
+            width: 68px;
+            height: 68px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #ffffff;
+            margin: 0 auto 18px;
+            box-shadow: 0 10px 25px var(--primary-glow);
+            animation: iconPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(1); box-shadow: 0 10px 25px var(--primary-glow); }
+            100% { transform: scale(1.05); box-shadow: 0 12px 30px rgba(6, 182, 212, 0.45); }
+        }
+
+        .admin-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .admin-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Form Controls */
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .form-label .req {
+            color: #f43f5e;
+        }
+
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-group-custom i.input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 14px;
+            transition: color 0.2s;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 3;
+        }
+
+        .toggle-password:hover {
+            color: #ffffff;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            padding: 12px 42px 12px 40px;
+            color: #ffffff;
+            font-size: 13px;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .form-control-custom:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            color: #ffffff;
+        }
+
+        .input-group-custom:focus-within i.input-icon {
+            color: #818cf8;
+        }
+
+        .form-control-custom::placeholder {
+            color: #64748b;
+        }
+
+        /* Password Strength Bar & Indicators */
+        .password-strength-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: -6px;
+            margin-bottom: 18px;
+        }
+
+        .strength-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .strength-label {
+            color: var(--text-muted);
+        }
+
+        .strength-status {
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .strength-track {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+
+        .req-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .req-item {
+            font-size: 11px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .req-item i {
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .req-item.satisfied {
+            color: #34d399;
+        }
+
+        .req-item.satisfied i {
+            color: #34d399;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 8px 25px var(--primary-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 6px;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Success Animation Screen */
+        .success-box {
+            text-align: center;
+            padding: 20px 10px;
+            display: none;
+            animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.4) 100%);
+            border: 2px solid #34d399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #34d399;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 30px var(--success-glow);
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .success-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+            line-height: 1.5;
+        }
+
+        .is-invalid-input {
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.3) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <div class="admin-wrapper">
+        <div id="setupFormContainer">
+            <div class="admin-header">
+                <div class="admin-icon-box">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h1 class="admin-title">Create Master Administrator</h1>
+                <p class="admin-subtitle">Configure the root administrator account to secure your RMS workspace</p>
+            </div>
+
+            <form id="adminSetupForm" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Username <span class="req">*</span></label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" class="form-control-custom" name="username" required placeholder="admin" minlength="3">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Full Name <span class="req">*</span></label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-id-badge input-icon"></i>
+                            <input type="text" class="form-control-custom" name="full_name" required placeholder="System Administrator">
+                        </div>
+                    </div>
+                </div>
+
+                <label class="form-label">Administrator Email <span class="req">*</span></label>
+                <div class="input-group-custom">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" class="form-control-custom" name="email" required placeholder="admin@organization.com">
+                </div>
+
+                <label class="form-label">Master Password <span class="req">*</span></label>
+                <div class="input-group-custom">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" class="form-control-custom" name="password" required placeholder="Create a secure password" id="passwordInput">
+                    <i class="fas fa-eye toggle-password" id="togglePass1"></i>
+                </div>
+
+                <div class="password-strength-box">
+                    <div class="strength-header">
+                        <span class="strength-label">Password Security Rating</span>
+                        <span class="strength-status" id="strengthStatus">Enter Password</span>
+                    </div>
+                    <div class="strength-track">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                    <ul class="req-list" id="reqList">
+                        <li class="req-item" id="req-len"><i class="fas fa-circle"></i> 8+ characters</li>
+                        <li class="req-item" id="req-upper"><i class="fas fa-circle"></i> Uppercase (A-Z)</li>
+                        <li class="req-item" id="req-lower"><i class="fas fa-circle"></i> Lowercase (a-z)</li>
+                        <li class="req-item" id="req-num"><i class="fas fa-circle"></i> Number (0-9)</li>
+                    </ul>
+                </div>
+
+                <label class="form-label">Confirm Master Password <span class="req">*</span></label>
+                <div class="input-group-custom">
+                    <i class="fas fa-check-double input-icon"></i>
+                    <input type="password" class="form-control-custom" name="confirm_password" required placeholder="Re-enter password" id="confirmPasswordInput">
+                    <i class="fas fa-eye toggle-password" id="togglePass2"></i>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btnSubmit">
+                    <i class="fas fa-shield-alt"></i> Initialize Administrator Account
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-box" id="successBox">
+            <div class="success-ring">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="success-title">Administrator Ready!</h2>
+            <p class="success-desc">
+                Your master administrator profile has been configured successfully. You can now login to access the full RMS management suite.
+            </p>
+            <button type="button" class="btn-submit" id="btnGoToLogin">
+                <i class="fas fa-sign-in-alt"></i> Proceed to Login
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const AdminSetup = {
+            init() {
+                this.bindEvents();
+            },
+
+            bindEvents() {
+                const passInput = document.getElementById('passwordInput');
+                const confInput = document.getElementById('confirmPasswordInput');
+                const form = document.getElementById('adminSetupForm');
+
+                // Toggle password visibility
+                document.getElementById('togglePass1').addEventListener('click', () => {
+                    const type = passInput.type === 'password' ? 'text' : 'password';
+                    passInput.type = type;
+                    document.getElementById('togglePass1').className = type === 'password' ? 'fas fa-eye toggle-password' : 'fas fa-eye-slash toggle-password';
+                });
+
+                document.getElementById('togglePass2').addEventListener('click', () => {
+                    const type = confInput.type === 'password' ? 'text' : 'password';
+                    confInput.type = type;
+                    document.getElementById('togglePass2').className = type === 'password' ? 'fas fa-eye toggle-password' : 'fas fa-eye-slash toggle-password';
+                });
+
+                passInput.addEventListener('input', () => this.evaluateStrength());
+                confInput.addEventListener('input', () => this.checkMatch());
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitForm();
+                });
+
+                document.getElementById('btnGoToLogin').addEventListener('click', () => {
+                    if (window.electronAPI && window.electronAPI.app && window.electronAPI.app.navigate) {
+                        window.electronAPI.app.navigate('login.html');
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                });
+            },
+
+            evaluateStrength() {
+                const val = document.getElementById('passwordInput').value;
+                const fill = document.getElementById('strengthFill');
+                const status = document.getElementById('strengthStatus');
+
+                const hasLen = val.length >= 8;
+                const hasUpper = /[A-Z]/.test(val);
+                const hasLower = /[a-z]/.test(val);
+                const hasNum = /[0-9]/.test(val);
+
+                this.setReqState('req-len', hasLen);
+                this.setReqState('req-upper', hasUpper);
+                this.setReqState('req-lower', hasLower);
+                this.setReqState('req-num', hasNum);
+
+                const count = [hasLen, hasUpper, hasLower, hasNum].filter(Boolean).length;
+
+                if (!val) {
+                    fill.style.width = '0%';
+                    status.textContent = 'Enter Password';
+                    status.style.color = '#64748b';
+                } else if (count === 1) {
+                    fill.style.width = '25%';
+                    fill.style.background = '#f43f5e';
+                    status.textContent = 'Weak';
+                    status.style.color = '#f43f5e';
+                } else if (count === 2 || count === 3) {
+                    fill.style.width = `${count * 25}%`;
+                    fill.style.background = '#f59e0b';
+                    status.textContent = 'Moderate';
+                    status.style.color = '#f59e0b';
+                } else {
+                    fill.style.width = '100%';
+                    fill.style.background = '#10b981';
+                    status.textContent = 'Strong';
+                    status.style.color = '#10b981';
+                }
+            },
+
+            setReqState(id, satisfied) {
+                const el = document.getElementById(id);
+                if (satisfied) {
+                    el.classList.add('satisfied');
+                    el.querySelector('i').className = 'fas fa-check-circle';
+                } else {
+                    el.classList.remove('satisfied');
+                    el.querySelector('i').className = 'fas fa-circle';
+                }
+            },
+
+            checkMatch() {
+                const pass = document.getElementById('passwordInput').value;
+                const conf = document.getElementById('confirmPasswordInput').value;
+                const confEl = document.getElementById('confirmPasswordInput');
+
+                if (conf && pass !== conf) {
+                    confEl.classList.add('is-invalid-input');
+                } else {
+                    confEl.classList.remove('is-invalid-input');
+                }
+            },
+
+            async submitForm() {
+                const form = document.getElementById('adminSetupForm');
+                const fd = new FormData(form);
+                const data = Object.fromEntries(fd);
+
+                if (!data.username || !data.full_name || !data.email || !data.password) {
+                    alert('Please complete all required fields.');
+                    return;
+                }
+
+                if (data.password !== data.confirm_password) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+
+                try {
+                    const btn = document.getElementById('btnSubmit');
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Initializing...';
+
+                    if (window.electronAPI && window.electronAPI.auth && window.electronAPI.auth.registerAdmin) {
+                        await window.electronAPI.auth.registerAdmin(data);
+                    }
+
+                    document.getElementById('setupFormContainer').style.display = 'none';
+                    document.getElementById('successBox').style.display = 'block';
+                } catch (err) {
+                    console.error('Error creating admin:', err);
+                    alert('Failed to create administrator account: ' + (err.message || 'Please try again.'));
+                    const btn = document.getElementById('btnSubmit');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-shield-alt"></i> Initialize Administrator Account';
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            AdminSetup.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<div class="backup-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Database Backup & Disaster Recovery</h1>
+            <p class="text-muted">Create verifiable <strong>.bak</strong> database packages, verify integrity hashes, and restore local data safely.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-outline-primary me-2" id="btnRestoreBackup">
+                <i class="fas fa-upload"></i> Restore from .bak
+            </button>
+            <button class="btn btn-primary" id="btnCreateBackup">
+                <i class="fas fa-download"></i> Backup Database Now (.bak)
+            </button>
+        </div>
+    </div>
+
+    <!-- Health & Status -->
+    <div class="dashboard-cards mb-4">
+        <div class="stat-card">
+            <div class="stat-card-icon invoice"><i class="fas fa-database"></i></div>
+            <div class="stat-card-value text-primary" id="healthDbSize">0.00 MB</div>
+            <div class="stat-card-label">Active Database Size</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-icon profit"><i class="fas fa-shield-alt"></i></div>
+            <div class="stat-card-value text-success" id="healthIntegrity">OK</div>
+            <div class="stat-card-label">SQLite Integrity Status</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-icon income"><i class="fas fa-archive"></i></div>
+            <div class="stat-card-value" id="healthBackupCount">0</div>
+            <div class="stat-card-label">Stored Backups</div>
+        </div>
+    </div>
+
+    <!-- Backup History Table -->
+    <div class="card">
+        <div class="card-header bg-light">
+            <h5 class="mb-0 fw-bold"><i class="fas fa-history me-2"></i> Local Backup Archives (.bak)</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="backupHistoryTable">
+                    <thead>
+                        <tr>
+                            <th>Backup Package Name</th>
+                            <th>Date Created</th>
+                            <th>Size</th>
+                            <th>Integrity</th>
+                            <th>Type</th>
+                            <th>Location / Path</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="backupHistoryBody">
+                        <tr><td colspan="7" class="text-center py-4 text-muted">Loading backup history...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-inline' data: https: file:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; img-src 'self' data: https: file:;">
+    <title>RMS - Report Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- ═══════════════════════════════════════════════════════════
+             FULL-WIDTH TOPBAR — Spans the entire screen width
+             Contains: Logo | Sidebar Toggle | App Menus | DateTime | Icons | Win Controls
+             ═══════════════════════════════════════════════════════════ -->
+        <header class="topbar" id="appTitlebar">
+
+            <!-- LEFT: Logo + Sidebar Toggle + App Menus -->
+            <div class="topbar-left">
+                <!-- Sidebar Collapse Toggle -->
+                <button class="topbar-sidebar-toggle" id="sidebarToggle" title="Toggle Sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- App Logo / Brand -->
+                <div class="topbar-brand"
+                    onclick="window.RMSAppInstance && window.RMSAppInstance.navigateTo('dashboard')"
+                    title="Go to Dashboard">
+                    <div class="topbar-brand-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="topbar-brand-name" id="companyName">RMS</span>
+                </div>
+
+                <!-- Vertical Separator -->
+                <div class="topbar-sep"></div>
+
+                <!-- Custom App Menus -->
+                <nav class="custom-app-menu-bar" id="customMenuBar">
+                    <!-- File Menu -->
+                    <div class="custom-menu-dropdown">
+                        <button class="custom-menu-btn" data-menu="file" type="button">
+                            <i class="fas fa-folder-open"></i> <span>File</span> <i class="fas fa-chevron-down caret-icon"></i>
+                        </button>
+                        <div class="custom-dropdown-panel" id="dropdown-file">
+                            <a href="#" class="custom-menu-item" data-nav="dashboard"><i
+                                    class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <a href="#" class="custom-menu-item" data-nav="invoices"><i
+                                    class="fas fa-plus-circle text-primary"></i> Create Invoice</a>
+                            <a href="#" class="custom-menu-item" data-nav="income"><i
+                                    class="fas fa-arrow-down text-success"></i> Record Income</a>
+                            <a href="#" class="custom-menu-item" data-nav="expenses"><i
+                                    class="fas fa-arrow-up text-danger"></i> Record Expense</a>
+                            <div class="custom-menu-sep"></div>
+                            <a href="#" class="custom-menu-item" id="topMenuLockApp"><i
+                                    class="fas fa-lock text-warning"></i> Lock Application <span
+                                    class="shortcut-tag">Ctrl+L</span></a>
+                            <a href="#" class="custom-menu-item" id="topMenuBackup"><i
+                                    class="fas fa-database text-info"></i> Backup Database <span
+                                    class="shortcut-tag">Ctrl+B</span></a>
+                            <div class="custom-menu-sep"></div>
+                            <a href="#" class="custom-menu-item danger-item" id="topMenuExitApp"><i
+                                    class="fas fa-power-off"></i> Exit RMS</a>
+                        </div>
+                    </div>
+
+                    <!-- Sales Menu -->
+                    <div class="custom-menu-dropdown">
+                        <button class="custom-menu-btn" data-menu="sales" type="button">
+                            <i class="fas fa-shopping-bag"></i> <span>Sales</span> <i class="fas fa-chevron-down caret-icon"></i>
+                        </button>
+                        <div class="custom-dropdown-panel" id="dropdown-sales">
+                            <a href="#" class="custom-menu-item" data-nav="invoices"><i
+                                    class="fas fa-file-invoice-dollar text-primary"></i> Invoices &amp; POS Billing</a>
+                            <a href="#" class="custom-menu-item" data-nav="customers"><i
+                                    class="fas fa-users text-info"></i> Customers &amp; Ledgers</a>
+                            <a href="#" class="custom-menu-item" data-nav="income"><i
+                                    class="fas fa-hand-holding-usd text-success"></i> Income Register</a>
+                            <a href="#" class="custom-menu-item" data-nav="currencies"><i
+                                    class="fas fa-coins text-warning"></i> Multi-Currency Hub</a>
+                        </div>
+                    </div>
+
+                    <!-- HR & Payroll Menu -->
+                    <div class="custom-menu-dropdown">
+                        <button class="custom-menu-btn" data-menu="hr" type="button">
+                            <i class="fas fa-user-friends"></i> <span>HR &amp; Payroll</span> <i
+                                class="fas fa-chevron-down caret-icon"></i>
+                        </button>
+                        <div class="custom-dropdown-panel" id="dropdown-hr">
+                            <a href="#" class="custom-menu-item" data-nav="staff"><i
+                                    class="fas fa-id-card text-primary"></i> Staff Directory</a>
+                            <a href="#" class="custom-menu-item" data-nav="attendance"><i
+                                    class="fas fa-clipboard-check text-success"></i> Attendance Register</a>
+                            <a href="#" class="custom-menu-item" data-nav="salaries"><i
+                                    class="fas fa-money-check-alt text-warning"></i> Salary &amp; Payroll</a>
+                            <a href="#" class="custom-menu-item" data-nav="advances"><i
+                                    class="fas fa-hand-holding-usd text-danger"></i> Salary Advances</a>
+                            <a href="#" class="custom-menu-item" data-nav="performance"><i
+                                    class="fas fa-chart-line text-info"></i> Staff Performance</a>
+                        </div>
+                    </div>
+
+                    <!-- Financials Menu -->
+                    <div class="custom-menu-dropdown">
+                        <button class="custom-menu-btn" data-menu="finance" type="button">
+                            <i class="fas fa-chart-pie"></i> <span>Financials</span> <i class="fas fa-chevron-down caret-icon"></i>
+                        </button>
+                        <div class="custom-dropdown-panel" id="dropdown-finance">
+                            <a href="#" class="custom-menu-item" data-nav="profit-loss"><i
+                                    class="fas fa-balance-scale text-primary"></i> Profit &amp; Loss</a>
+                            <a href="#" class="custom-menu-item" data-nav="expenses"><i
+                                    class="fas fa-receipt text-danger"></i> Operating Expenses</a>
+                            <a href="#" class="custom-menu-item" data-nav="daily-reports"><i
+                                    class="fas fa-calendar-day text-info"></i> Daily Closing Reports</a>
+                            <a href="#" class="custom-menu-item" data-nav="reports"><i
+                                    class="fas fa-file-alt text-warning"></i> Custom Reports</a>
+                        </div>
+                    </div>
+
+                    <!-- System Menu -->
+                    <div class="custom-menu-dropdown">
+                        <button class="custom-menu-btn" data-menu="system" type="button">
+                            <i class="fas fa-cogs"></i> <span>System</span> <i class="fas fa-chevron-down caret-icon"></i>
+                        </button>
+                        <div class="custom-dropdown-panel" id="dropdown-system">
+                            <a href="#" class="custom-menu-item" data-nav="settings"><i
+                                    class="fas fa-cog text-primary"></i> Settings Center</a>
+                            <a href="#" class="custom-menu-item" data-nav="users"><i
+                                    class="fas fa-user-shield text-info"></i> User Management</a>
+                            <a href="#" class="custom-menu-item" data-nav="audit-logs"><i
+                                    class="fas fa-history text-warning"></i> Audit Logs</a>
+                            <a href="#" class="custom-menu-item" data-nav="backup"><i
+                                    class="fas fa-database text-success"></i> Backup &amp; Restore</a>
+                            <div class="custom-menu-sep"></div>
+                            <a href="#" class="custom-menu-item" data-nav="about"><i
+                                    class="fas fa-info-circle text-primary"></i> About RMS</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- RIGHT: Currency + Icons + User Menu + Window Controls -->
+            <div class="topbar-right">
+                <!-- Currency Badge -->
+                <div class="currency-indicator" id="currencyIndicator" title="Base Currency"
+                    onclick="window.RMSAppInstance && window.RMSAppInstance.navigateTo('currencies')">
+                    <span id="currencySymbol" style="font-size:13px;font-weight:800;">$</span>
+                    <span id="baseCurrency">USD</span>
+                </div>
+
+                <!-- Search -->
+                <button class="icon-btn" id="globalSearchBtn" title="Global Search (Ctrl+K)">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                <!-- Notifications -->
+                <div style="position:relative;">
+                    <button class="icon-btn" id="notificationBtn" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <span id="notificationBadge"
+                        style="position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:#dc3545;display:none;"></span>
+                </div>
+
+                <!-- Theme -->
+                <button class="icon-btn" id="themeToggle" title="Switch Theme">
+                    <i class="fas fa-palette"></i>
+                </button>
+
+                <!-- Lock -->
+                <button class="icon-btn" id="lockAppBtn" title="Lock Application" style="color:var(--warning-color);">
+                    <i class="fas fa-lock"></i>
+                </button>
+
+                <!-- Vertical Separator -->
+                <div class="topbar-sep"></div>
+
+                <!-- User Menu -->
+                <div class="user-menu">
+                    <button class="user-dropdown-toggle" id="userDropdownToggle">
+                        <div class="user-avatar" id="userAvatarEl">
+                            <span id="userInitials">A</span>
+                        </div>
+                        <div class="user-info-text" style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;">
+                            <span class="user-name" id="userName">Admin</span>
+                            <small class="user-role" style="font-size:10px;color:var(--text-muted);" id="userRole">Administrator</small>
+                        </div>
+                        <i class="fas fa-chevron-down"
+                            style="font-size:9px;color:var(--text-muted);margin-left:2px;"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div
+                            style="padding:12px 16px;border-bottom:1px solid var(--border-color);background:var(--bg-secondary);">
+                            <div style="font-weight:600;font-size:13px;" id="dropdownUserName">Admin</div>
+                            <div style="font-size:11px;color:var(--text-muted);" id="dropdownUserEmail">admin@rms.local
+                            </div>
+                        </div>
+                        <a href="#" class="dropdown-item" id="profileBtn"><i class="fas fa-user-circle"></i><span>My
+                                Profile</span></a>
+                        <a href="#" class="dropdown-item" id="changePasswordBtn"><i class="fas fa-key"></i><span>Change
+                                Password</span></a>
+                        <a href="#" class="dropdown-item"
+                            onclick="window.RMSAppInstance && window.RMSAppInstance.navigateTo('settings')"><i
+                                class="fas fa-cog"></i><span>Settings</span></a>
+                        <div style="border-top:1px solid var(--border-color);margin:4px 0;"></div>
+                        <a href="#" class="dropdown-item" id="lockBtn" style="color:var(--warning-color);"><i
+                                class="fas fa-lock"></i><span>Lock Application</span></a>
+                        <a href="#" class="dropdown-item" id="logoutBtn" style="color:var(--danger-color);"><i
+                                class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+                    </div>
+                </div>
+
+                <!-- Separator before window controls -->
+                <div class="topbar-sep"></div>
+
+                <!-- Window Controls (Minimize / Maximize / Close) -->
+                <div class="window-controls-group" id="windowControlsGroup">
+                    <button type="button" class="win-control-btn win-minimize" id="btnWinMinimize" title="Minimize">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="win-control-btn win-maximize" id="btnWinMaximize"
+                        title="Maximize / Restore">
+                        <i class="far fa-square" id="winMaxIcon"></i>
+                    </button>
+                    <button type="button" class="win-control-btn win-close" id="btnWinClose" title="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════════════════════════════════════════════════════
+             BODY AREA — Sidebar + Page Content side by side
+             ═══════════════════════════════════════════════════════════ -->
+        <div class="app-body">
+
+            <!-- Sidebar (NO header inside — topbar is the header) -->
+            <nav id="sidebar" class="sidebar">
+                <div class="sidebar-menu">
+                    <div class="menu-section">
+                        <div class="menu-label">Main</div>
+                        <a href="#" class="menu-item active" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="daily-reports">
+                            <i class="fas fa-calendar-day"></i>
+                            <span>Daily Reports</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">Financial</div>
+                        <a href="#" class="menu-item" data-page="income">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>Income</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="expenses">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Expenses</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="profit-loss">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Profit &amp; Loss</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">Staff</div>
+                        <a href="#" class="menu-item" data-page="staff">
+                            <i class="fas fa-users"></i>
+                            <span>Staff</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="attendance">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Attendance</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="salaries">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Salaries</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="advances">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>Salary Advances</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="performance">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Performance</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">Sales</div>
+                        <a href="#" class="menu-item" data-page="invoices">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Invoices</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="customers">
+                            <i class="fas fa-address-book"></i>
+                            <span>Customers</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">Reports</div>
+                        <a href="#" class="menu-item" data-page="reports">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-section">
+                        <div class="menu-label">System</div>
+                        <a href="#" class="menu-item" data-page="currencies">
+                            <i class="fas fa-coins"></i>
+                            <span>Currencies</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="users">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Users</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="audit-logs">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="backup">
+                            <i class="fas fa-database"></i>
+                            <span>Backup &amp; Restore</span>
+                        </a>
+                        <a href="#" class="menu-item" data-page="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <a href="#" class="menu-item" data-page="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <main class="page-content" id="pageContent">
+                    <!-- Content loaded dynamically -->
+                </main>
+            </div>
+
+        </div><!-- /.app-body -->
+    </div><!-- /#app -->
+
+    <!-- Global Search Modal -->
+    <div class="modal" id="globalSearchModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Global Search</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="search-input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" id="globalSearchInput"
+                            placeholder="Search staff, invoices, income, expenses...">
+                    </div>
+                    <div class="search-results" id="searchResults">
+                        <div class="search-empty">
+                            <i class="fas fa-search"></i>
+                            <p>Type to search across all modules</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h5>Notifications</h5>
+            <button class="mark-all-read-btn" id="markAllReadBtn">Mark all as read</button>
+        </div>
+        <div class="notification-list" id="notificationList">
+            <!-- Notifications will be loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-circle me-2 text-primary"></i>My Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="profileForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" id="profileUsername" disabled readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="profileFullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="profileEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="profilePhone">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i>Save
+                            Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-key me-2 text-warning"></i>Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="changePasswordForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="currentPasswordInput" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="newPasswordInput" required minlength="6">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirmNewPasswordInput" required
+                                minlength="6">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle me-1"></i>Update
+                            Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/chart.umd.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="modules/dashboard/dashboard.js"></script>
+    <script src="modules/daily-reports/daily-reports.js"></script>
+    <script src="modules/income/income.js"></script>
+    <script src="modules/expenses/expenses.js"></script>
+    <script src="modules/profit-loss/profit-loss.js"></script>
+    <script src="modules/staff/staff.js"></script>
+    <script src="modules/attendance/attendance.js"></script>
+    <script src="modules/salaries/salaries.js"></script>
+    <script src="modules/advances/advances.js"></script>
+    <script src="modules/performance/performance.js"></script>
+    <script src="modules/invoices/invoices.js"></script>
+    <script src="modules/customers/customers.js"></script>
+    <script src="modules/reports/reports.js"></script>
+    <script src="modules/currencies/currencies.js"></script>
+    <script src="modules/users/users.js"></script>
+    <script src="modules/audit-logs/audit-logs.js"></script>
+    <script src="modules/settings/settings.js"></script>
+    <script src="modules/backup/backup.js"></script>
+    <script src="modules/about/about.js"></script>
+</body>
+
+</html>

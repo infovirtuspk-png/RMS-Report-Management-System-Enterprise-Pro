@@ -1,0 +1,2919 @@
+# RMS — REPORT MANAGEMENT SYSTEM
+
+## Complete Offline Desktop Business, Staff, Finance, Attendance, Salary, Invoice & Reporting Management System
+
+---
+
+## 1. PROJECT OVERVIEW
+
+Develop a professional, production-ready, completely offline Windows Desktop Application named:
+
+**RMS — Report Management System**
+
+RMS is a complete offline business management and reporting application designed to manage:
+
+* Daily Reports
+* Daily Income
+* Daily Profit
+* Daily Expenses
+* Monthly Income
+* Monthly Expenses
+* Profit & Loss
+* Staff Management
+* Staff Attendance
+* Staff Salaries
+* Salary Advances
+* Staff Performance
+* Staff Documents
+* Company Management
+* Company Invoices
+* Thermal Invoice Printing
+* Multi-Currency Management
+* User Management
+* Dashboard Analytics
+* Weekly Reports
+* Monthly Reports
+* 3-Month Reports
+* 6-Month Reports
+* Yearly Reports
+* Staff-specific Reports
+* Financial Reports
+* Database Backup & Restore
+* Application Settings
+* Theme Management
+* Security
+* Audit Logs
+* Professional About & License Information
+
+The application must work **100% offline** after installation.
+
+No cloud server should be required.
+
+No internet connection should be required for normal operation.
+
+All business data must be stored locally using SQLite.
+
+The application must provide a modern, beautiful, responsive, animated and professional Desktop UI.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+## Desktop Framework
+
+Use:
+
+**Electron.js**
+
+Target:
+
+* Windows 10
+* Windows 11
+* 64-bit
+
+Architecture:
+
+Electron Main Process + Secure Preload + Renderer Process.
+
+---
+
+# 3. RUNTIME / BACKEND
+
+Use:
+
+**Node.js**
+
+Node.js should handle:
+
+* SQLite database operations
+* File-system operations
+* Image management
+* Backup/restore
+* Invoice generation
+* Thermal printing
+* PDF generation if implemented
+* Report generation
+* Application settings
+* Security-related operations
+* IPC communication
+* Application-level services
+
+Do not expose Node.js directly to the renderer.
+
+Use a secure Electron architecture.
+
+---
+
+# 4. FRONTEND
+
+Use:
+
+* HTML5
+* CSS3
+* JavaScript ES6+
+
+UI Framework:
+
+**Bootstrap 5**
+
+Additional custom CSS/JavaScript may be used to create a premium application interface.
+
+---
+
+# 5. DATABASE
+
+Use:
+
+**SQLite**
+
+The database must be completely local.
+
+The application must automatically create the database during first launch.
+
+Use proper relational database design.
+
+Implement:
+
+* Primary keys
+* Foreign keys
+* Unique constraints
+* Indexes
+* Transactions
+* Validation
+* Soft delete where appropriate
+* Created/Updated timestamps
+* Audit fields
+
+Database corruption should be minimized through safe transaction handling.
+
+---
+
+# 6. IMPORTANT OFFLINE REQUIREMENT
+
+RMS must be a:
+
+**100% Offline Desktop Application**
+
+Normal functionality must NOT depend on:
+
+* Internet
+* Cloud database
+* Firebase
+* External API
+* Online authentication
+* Online server
+* Online reporting service
+
+All data must remain on the local computer.
+
+"Realtime" in this application means:
+
+* Instant UI updates
+* Instant database updates
+* Live dashboard calculations
+* Live currency updates inside the application
+* Live theme changes
+* Live settings changes
+* Live report filtering
+* Live staff calculations
+* Live attendance calculations
+* Live profit calculations
+
+It does NOT mean Internet-based realtime synchronization.
+
+---
+
+# 7. APPLICATION NAME
+
+Application Name:
+
+**RMS**
+
+Full Name:
+
+**Report Management System**
+
+Company Name:
+
+Must be configurable independently from the application name.
+
+For example:
+
+Application:
+
+RMS
+
+Company:
+
+ABC Trading LLC
+
+The company name must appear on:
+
+* Dashboard
+* Invoices
+* Thermal receipts
+* Reports
+* Printed documents
+* Company profile
+* Headers
+* Footers
+* Exported reports
+
+---
+
+# 8. FIRST-RUN COMPANY REGISTRATION
+
+On first launch, show a professional:
+
+**Company Registration Wizard**
+
+The administrator must enter complete company information.
+
+## Company Information
+
+Fields:
+
+* Company ID
+* Company Name
+* Legal Company Name
+* Trade Name
+* Company Type
+* Business Activity
+* Registration Number
+* Trade License Number
+* Tax/VAT Number
+* Establishment Number
+* Email
+* Phone
+* WhatsApp
+* Alternate Phone
+* Website
+* Address
+* Area
+* City
+* State/Province
+* Country
+* Postal Code
+* Currency
+* Currency Symbol
+* Time Zone
+* Company Logo
+* Company Stamp
+* Authorized Person
+* Authorized Person Designation
+* Invoice Prefix
+* Report Prefix
+* Financial Year Start
+* Invoice Footer
+* Report Footer
+* Terms & Conditions
+
+Allow the company information to be edited later from Settings.
+
+---
+
+# 9. MAIN APPLICATION LAYOUT
+
+Create a professional modern ERP-style Desktop interface.
+
+Layout:
+
+### Left Sidebar
+
+* Dashboard
+* Daily Reports
+* Income
+* Expenses
+* Profit & Loss
+* Staff
+* Attendance
+* Salaries
+* Salary Advances
+* Staff Performance
+* Invoices
+* Customers
+* Reports
+* Currencies
+* Users
+* Audit Logs
+* Backup & Restore
+* Settings
+* About
+
+Sidebar must support:
+
+* Expanded mode
+* Collapsed mode
+* Icons
+* Tooltips
+* Active menu state
+* Smooth animation
+
+---
+
+# 10. TOP NAVIGATION BAR
+
+Include:
+
+* Application Logo
+* Current Company Name
+* Current Date
+* Current Time
+* Currency indicator
+* Notification icon
+* Quick Action button
+* Theme switcher
+* User profile
+* User role
+* Lock application
+* Logout
+
+Clock should update automatically.
+
+---
+
+# 11. DASHBOARD
+
+Create an advanced live dashboard.
+
+Dashboard cards:
+
+### Financial Cards
+
+* Today's Income
+* Today's Expenses
+* Today's Profit
+* Current Month Income
+* Current Month Expenses
+* Current Month Profit
+* Total Receivables
+* Total Payables
+
+### Staff Cards
+
+* Total Staff
+* Present Today
+* Absent Today
+* On Leave
+* Active Staff
+* Inactive Staff
+* Salary Due
+* Advances Outstanding
+
+### Invoice Cards
+
+* Today's Invoices
+* Current Month Invoices
+* Paid Invoices
+* Pending Invoices
+* Cancelled Invoices
+
+---
+
+# 12. DASHBOARD CHARTS
+
+Implement modern charts using a suitable local JavaScript chart library.
+
+Charts:
+
+* Daily Income
+* Daily Expenses
+* Daily Profit
+* Monthly Income
+* Monthly Expenses
+* Monthly Profit
+* Income vs Expenses
+* Staff Attendance
+* Salary Distribution
+* Expense Categories
+* Revenue Categories
+
+Charts must update immediately after database changes.
+
+---
+
+# 13. QUICK ACTIONS
+
+Dashboard quick actions:
+
+* Add Income
+* Add Expense
+* New Invoice
+* Add Staff
+* Mark Attendance
+* Add Salary Advance
+* Generate Daily Report
+* Generate Monthly Report
+* Backup Database
+
+---
+
+# 14. DAILY REPORT MANAGEMENT
+
+Create a complete Daily Report module.
+
+Fields:
+
+* Report ID
+* Report Number
+* Report Date
+* Company
+* Prepared By
+* Total Income
+* Total Expenses
+* Net Profit
+* Total Staff
+* Present Staff
+* Absent Staff
+* Leave Staff
+* Total Salary Advance
+* Total Invoices
+* Paid Invoices
+* Pending Invoices
+* Notes
+* Remarks
+
+Automatically calculate:
+
+**Profit = Total Income - Total Expenses**
+
+Do not allow manual profit manipulation unless authorized.
+
+---
+
+# 15. INCOME MANAGEMENT
+
+Create a complete Income module.
+
+Fields:
+
+* Income ID
+* Income Number
+* Date
+* Time
+* Category
+* Description
+* Customer
+* Invoice Reference
+* Payment Method
+* Currency
+* Exchange Rate
+* Amount
+* Base Currency Amount
+* Notes
+* Created By
+
+Payment methods:
+
+* Cash
+* Bank
+* Card
+* Online
+* Cheque
+* Other
+
+Support multiple income categories.
+
+---
+
+# 16. EXPENSE MANAGEMENT
+
+Create a complete Expense module.
+
+Fields:
+
+* Expense ID
+* Expense Number
+* Date
+* Time
+* Category
+* Description
+* Vendor
+* Payment Method
+* Currency
+* Exchange Rate
+* Amount
+* Base Currency Amount
+* Receipt Reference
+* Notes
+* Created By
+
+Expense categories should be customizable.
+
+Examples:
+
+* Rent
+* Electricity
+* Internet
+* Transport
+* Food
+* Office Supplies
+* Maintenance
+* Salaries
+* Marketing
+* Other
+
+---
+
+# 17. PROFIT & LOSS
+
+Create automatic Profit & Loss calculations.
+
+Formula:
+
+**Net Profit = Total Income - Total Expenses**
+
+Show:
+
+* Gross Income
+* Total Expenses
+* Staff Salary Expenses
+* Advance Adjustments
+* Other Expenses
+* Net Profit
+* Profit Margin
+
+Allow filtering by:
+
+* Today
+* Yesterday
+* This Week
+* This Month
+* Previous Month
+* 3 Months
+* 6 Months
+* This Year
+* Custom Date Range
+
+---
+
+# 18. STAFF MANAGEMENT
+
+Create a complete Staff Management System.
+
+Staff registration must contain advanced fields.
+
+## Personal Information
+
+* Staff ID
+* Employee Code
+* Full Name
+* Father's Name
+* Mother's Name
+* Gender
+* Date of Birth
+* Age
+* Marital Status
+* Nationality
+* Religion optional
+* Blood Group
+* Profile Image
+
+## Contact Information
+
+* WhatsApp Number
+* Calling Number
+* Alternate Number
+* Email
+* Current Address
+* Permanent Address
+* City
+* Country
+
+## Identification
+
+* Emirates ID / National ID Number
+* ID Issue Date
+* ID Expiry Date
+* Passport Number
+* Passport Issue Date
+* Passport Expiry Date
+* Visa Number
+* Visa Expiry Date
+* Labour Card Number
+* Work Permit Number
+
+## Employment
+
+* Department
+* Designation
+* Joining Date
+* Employment Type
+* Contract Type
+* Basic Salary
+* Allowance
+* Total Salary
+* Payment Frequency
+* Bank Name
+* Account Number / IBAN
+* Salary Payment Method
+* Status
+
+Statuses:
+
+* Active
+* Inactive
+* Resigned
+* Terminated
+* On Leave
+
+---
+
+# 19. STAFF IMAGE MANAGEMENT
+
+Allow staff profile images.
+
+Images should be stored locally in structured folders.
+
+Example:
+
+```text
+RMS/
+ ├── data/
+ ├── database/
+ ├── staff/
+ │    ├── STAFF-0001/
+ │    │     └── profile.jpg
+ │    ├── STAFF-0002/
+ │    │     └── profile.jpg
+ ├── company/
+ ├── invoices/
+ ├── reports/
+ └── backups/
+```
+
+Do not unnecessarily store large binary images inside SQLite.
+
+Store image paths in SQLite.
+
+Validate:
+
+* File type
+* File size
+* Image dimensions
+
+Generate thumbnails where useful.
+
+---
+
+# 20. STAFF DOCUMENT MANAGEMENT
+
+Allow staff-related documents to be managed locally.
+
+Examples:
+
+* ID documents
+* Passport
+* Visa
+* Contract
+* Certificates
+* Other documents
+
+Provide:
+
+* Document category
+* Document name
+* Issue date
+* Expiry date
+* File path
+* Notes
+
+Show expiry warnings.
+
+---
+
+# 21. STAFF ATTENDANCE MANAGEMENT
+
+Create a complete attendance module.
+
+Attendance statuses:
+
+* Present
+* Absent
+* Late
+* Half Day
+* Leave
+* Holiday
+* Off Day
+
+Fields:
+
+* Attendance ID
+* Staff ID
+* Date
+* Check In
+* Check Out
+* Total Hours
+* Status
+* Overtime
+* Notes
+
+Dashboard should show today's attendance.
+
+Prevent duplicate attendance for the same staff/date unless authorized.
+
+---
+
+# 22. STAFF SALARY MANAGEMENT
+
+Create salary management.
+
+Fields:
+
+* Salary ID
+* Staff ID
+* Salary Month
+* Basic Salary
+* Allowances
+* Overtime
+* Bonus
+* Deduction
+* Advance Deduction
+* Other Deduction
+* Net Salary
+* Payment Date
+* Payment Method
+* Currency
+* Payment Status
+* Notes
+
+Automatically calculate:
+
+**Net Salary = Basic + Allowances + Overtime + Bonus - Deductions - Advance Deduction**
+
+---
+
+# 23. SALARY ADVANCE MANAGEMENT
+
+Create a complete Salary Advance Register.
+
+Fields:
+
+* Advance ID
+* Staff ID
+* Staff Name
+* Date
+* Advance Amount
+* Currency
+* Reason
+* Approved By
+* Deduction Month
+* Deduction Amount
+* Remaining Balance
+* Status
+* Notes
+
+Statuses:
+
+* Pending
+* Approved
+* Partially Recovered
+* Fully Recovered
+* Cancelled
+
+Automatically track outstanding advance balance.
+
+---
+
+# 24. STAFF PERFORMANCE
+
+Create Staff Performance Management.
+
+Track:
+
+* Attendance percentage
+* Present days
+* Absent days
+* Late days
+* Leave days
+* Working hours
+* Overtime
+* Salary
+* Advances
+* Performance score
+* Performance remarks
+
+Provide performance report per:
+
+* Staff
+* Department
+* Month
+* Year
+
+---
+
+# 25. STAFF SEPARATE REPORTS
+
+Every employee should have an individual report.
+
+Report should show:
+
+* Personal details
+* Employment details
+* Attendance
+* Salary
+* Advances
+* Salary deductions
+* Performance
+* Leave
+* Documents expiry
+* Payment history
+
+Allow:
+
+* Print
+* Export PDF
+* Export CSV/Excel where implemented
+
+---
+
+# 26. INVOICE MANAGEMENT
+
+Create a professional invoice system.
+
+Invoice must automatically use the registered:
+
+**Company Name**
+
+Invoice header must display:
+
+* Company Logo
+* Company Name
+* Address
+* Phone
+* Email
+* Tax/VAT Number
+* Registration details
+
+---
+
+# 27. UNIQUE INVOICE NUMBER SYSTEM
+
+Every invoice must have a unique invoice number.
+
+Example:
+
+```text
+ABC-INV-2026-000001
+ABC-INV-2026-000002
+ABC-INV-2026-000003
+```
+
+Invoice number must be generated automatically.
+
+Never generate duplicate invoice numbers.
+
+Use SQLite UNIQUE constraint as an additional safety mechanism.
+
+Allow configurable:
+
+* Prefix
+* Starting number
+* Year format
+* Number length
+
+---
+
+# 28. THERMAL INVOICE SYSTEM
+
+Implement thermal receipt/invoice printing.
+
+Support common thermal printer widths:
+
+* 58mm
+* 80mm
+
+Create printer-friendly layouts.
+
+Invoice should contain:
+
+* Company logo/name
+* Company contact
+* Invoice number
+* Date
+* Time
+* Customer
+* Items/services
+* Quantity
+* Unit price
+* Discount
+* Tax
+* Total
+* Paid
+* Balance
+* Payment method
+* Currency
+* Thank-you message
+* Footer
+
+Provide:
+
+**Print Thermal Invoice**
+
+and:
+
+**Print Preview**
+
+---
+
+# 29. PRINTING
+
+Support:
+
+* Thermal printers
+* Standard A4 printers
+* System printer selection
+* Print preview
+* Reprint invoice
+* Print report
+* Print staff report
+
+Use Electron's printing capabilities.
+
+Printer errors must be handled gracefully.
+
+---
+
+# 30. MULTI-CURRENCY MANAGEMENT
+
+Create a complete Multi-Currency module.
+
+Fields:
+
+* Currency ID
+* Currency Code
+* Currency Name
+* Currency Symbol
+* Decimal Places
+* Exchange Rate
+* Base Currency
+* Status
+
+Examples:
+
+* AED — د.إ
+* PKR — ₨
+* USD — $
+* EUR — €
+* GBP — £
+* SAR — ﷼
+* INR — ₹
+
+Allow unlimited currencies.
+
+---
+
+# 31. REALTIME CURRENCY SYSTEM
+
+Because the application is offline, currency "realtime" means:
+
+* Instant local exchange-rate calculations
+* Instant conversion
+* Automatic symbol rendering
+* Instant dashboard recalculation
+* Currency-aware invoice totals
+
+Do not depend on an online currency API.
+
+Allow administrator to manually update exchange rates.
+
+Every financial transaction should store the exchange rate used at transaction time so historical records do not change when the currency rate is later updated.
+
+---
+
+# 32. REPORTING SYSTEM
+
+Create an advanced Reports Center.
+
+Categories:
+
+### Financial Reports
+
+* Daily Income Report
+* Daily Expense Report
+* Daily Profit Report
+* Weekly Financial Report
+* Monthly Financial Report
+* 3-Month Financial Report
+* 6-Month Financial Report
+* Annual Financial Report
+* Profit & Loss Report
+
+### Staff Reports
+
+* Staff Register
+* Staff Attendance
+* Staff Salary
+* Salary Advance
+* Staff Performance
+* Staff Expiry Report
+
+### Invoice Reports
+
+* Invoice Register
+* Paid Invoices
+* Pending Invoices
+* Cancelled Invoices
+* Daily Invoice Report
+* Monthly Invoice Report
+
+---
+
+# 33. REPORT PERIODS
+
+Provide one-click report filters:
+
+* Today
+* Yesterday
+* Current Week
+* Previous Week
+* Current Month
+* Previous Month
+* Last 3 Months
+* Last 6 Months
+* Current Year
+* Previous Year
+* Custom Date Range
+
+---
+
+# 34. REPORT FILTERING
+
+Every report should support filters where applicable:
+
+* Date From
+* Date To
+* Staff
+* Department
+* Category
+* Currency
+* Payment Method
+* Invoice Status
+* Staff Status
+
+Results must update without restarting the application.
+
+---
+
+# 35. REPORT EXPORT
+
+Where practical provide:
+
+* Print
+* PDF
+* CSV
+* Excel-compatible export
+
+Reports must include company branding.
+
+---
+
+# 36. REPORT HEADER
+
+Every printed report should contain:
+
+**Company Logo**
+
+**Company Name**
+
+**Report Name**
+
+**Date Range**
+
+**Generated Date/Time**
+
+**Generated By**
+
+---
+
+# 37. USER MANAGEMENT
+
+Create complete local user management.
+
+Roles:
+
+* Super Admin
+* Administrator
+* Manager
+* Accountant
+* HR Manager
+* Staff/User
+* Viewer
+
+Permission system should support granular permissions.
+
+Example:
+
+```text
+Dashboard
+View
+Create
+Edit
+Delete
+Print
+Export
+```
+
+Do this for modules including:
+
+* Income
+* Expenses
+* Staff
+* Attendance
+* Salaries
+* Advances
+* Invoices
+* Reports
+* Settings
+* Backup
+* Restore
+* Users
+
+---
+
+# 38. LOCAL AUTHENTICATION
+
+Implement secure local authentication.
+
+Features:
+
+* Username
+* Password
+* Role
+* Account status
+* Last login
+* Password change
+* Login attempt protection
+* Session state
+* Logout
+* Application lock
+
+Passwords must NOT be stored as plain text.
+
+Use a strong password hashing mechanism.
+
+---
+
+# 39. AUDIT LOG
+
+Create an Audit Log system.
+
+Track:
+
+* Login
+* Logout
+* Create
+* Edit
+* Delete
+* Invoice creation
+* Invoice cancellation
+* Salary payment
+* Advance creation
+* Backup
+* Restore
+* Settings changes
+* User changes
+
+Store:
+
+* User
+* Action
+* Module
+* Record ID
+* Date
+* Time
+* Description
+
+---
+
+# 40. DATABASE BACKUP
+
+Create an advanced Backup & Restore module.
+
+Backup extension MUST be:
+
+**.bak**
+
+Example:
+
+```text
+RMS_Backup_2026-09-03_123000.bak
+```
+
+The backup file must contain all required local application data.
+
+Backup should include:
+
+* SQLite database
+* Application configuration required for restoration
+* Relevant metadata
+* Optional managed files depending on backup mode
+
+Provide:
+
+* Create Backup
+* Backup Now
+* Automatic Backup
+* Scheduled Local Backup
+* Backup History
+* Backup Location
+* Delete Old Backup
+* Restore Backup
+* Verify Backup
+
+---
+
+# 41. .BAK BACKUP FORMAT
+
+The `.bak` file must be treated as an RMS-specific backup package.
+
+Do not simply rename an unsafe/corrupt database file.
+
+Implement a structured backup package with:
+
+* Backup version
+* Application version
+* Database version
+* Creation date
+* Company identifier
+* Integrity information
+* Database backup
+* Optional media archive
+
+The system should validate the backup before restoration.
+
+---
+
+# 42. RESTORE SYSTEM
+
+Restore must accept:
+
+```text
+*.bak
+```
+
+Before restoration:
+
+1. Validate file
+2. Validate backup format
+3. Validate database integrity
+4. Display backup information
+5. Ask for confirmation
+6. Automatically create safety backup of current database
+7. Restore selected backup
+8. Verify restored database
+9. Restart/reload application safely
+
+Never overwrite the active database without a recovery/safety backup.
+
+---
+
+# 43. AUTOMATIC BACKUP
+
+Settings:
+
+* Daily
+* Weekly
+* Monthly
+* On Application Exit
+* Before Restore
+* Before Major Database Migration
+
+Allow:
+
+* Backup folder selection
+* Maximum backup count
+* Automatic cleanup
+* Backup retention
+
+All backups remain local.
+
+---
+
+# 44. APPLICATION SETTINGS
+
+Create a comprehensive Settings Center.
+
+Sections:
+
+### General
+
+* Application Name
+* Company Name
+* Date Format
+* Time Format
+* Language
+* First Day of Week
+
+### Company
+
+* Company information
+* Logo
+* Stamp
+* Contact details
+
+### Invoice
+
+* Invoice prefix
+* Starting number
+* Thermal width
+* Invoice footer
+* Tax settings
+* Discount settings
+
+### Currency
+
+* Base currency
+* Currency symbol
+* Decimal places
+* Exchange rates
+
+### Staff
+
+* Employee code format
+* Salary settings
+* Attendance settings
+
+### Backup
+
+* Backup location
+* Automatic backup
+* Retention
+
+### Security
+
+* Auto-lock
+* Session timeout
+* Login security
+
+### Appearance
+
+* Theme
+* Sidebar mode
+* Animations
+* Font size
+* Compact/comfortable mode
+
+---
+
+# 45. SEVEN MODERN THEMES
+
+Implement exactly **7 professional themes**.
+
+Example:
+
+1. Professional Light
+2. Professional Dark
+3. Ocean Blue
+4. Emerald
+5. Royal Purple
+6. Midnight
+7. Graphite
+
+Theme changes must happen instantly without restarting.
+
+Store selected theme in SQLite/local configuration.
+
+All UI components must respond to theme variables.
+
+---
+
+# 46. MODERN UI/UX
+
+The interface must look like a professional modern commercial Desktop ERP.
+
+Design principles:
+
+* Clean
+* Minimal
+* Professional
+* Modern
+* Responsive
+* Consistent
+* Accessible
+* Fast
+
+Use:
+
+* Bootstrap 5
+* Cards
+* Tables
+* Modals
+* Toast notifications
+* Dropdowns
+* Badges
+* Tabs
+* Progress bars
+* Form validation
+* Tooltips
+* Breadcrumbs
+
+---
+
+# 47. ANIMATED UI
+
+Add subtle professional animations.
+
+Examples:
+
+* Sidebar animation
+* Page transitions
+* Card entrance animation
+* Modal animation
+* Button hover effects
+* Loading indicators
+* Skeleton loaders
+* Toast animations
+* Chart animation
+* Number counter animation
+
+Avoid excessive animations that reduce performance.
+
+Provide:
+
+**Reduce Animations**
+
+setting for users who prefer a simpler interface.
+
+---
+
+# 48. RESPONSIVE DESKTOP UI
+
+Although this is a Desktop application, the UI must be responsive.
+
+Support:
+
+* 1280×720
+* 1366×768
+* 1600×900
+* 1920×1080
+* 2560×1440
+
+Tables should handle smaller widths gracefully.
+
+Use:
+
+* Responsive cards
+* Horizontal table scrolling
+* Collapsible sidebar
+* Adaptive forms
+* Responsive modal sizes
+
+---
+
+# 49. GLOBAL SEARCH
+
+Implement a global search system.
+
+Search:
+
+* Staff
+* Invoice
+* Income
+* Expense
+* Attendance
+* Salary
+* Advance
+* Reports
+
+Provide keyboard shortcut:
+
+**Ctrl + K**
+
+Search results should appear instantly.
+
+---
+
+# 50. NOTIFICATION CENTER
+
+Show local application notifications.
+
+Examples:
+
+* Staff visa expiring
+* Passport expiring
+* ID expiring
+* Salary pending
+* Advance outstanding
+* Backup required
+* Invoice pending
+* Database warning
+
+Provide configurable expiry warning periods:
+
+* 7 days
+* 15 days
+* 30 days
+* 60 days
+* 90 days
+
+---
+
+# 51. STAFF EXPIRY DASHBOARD
+
+Create a dedicated expiry management section.
+
+Track:
+
+* Emirates/National ID expiry
+* Passport expiry
+* Visa expiry
+* Work Permit expiry
+* Contract expiry
+
+Statuses:
+
+* Active
+* Expiring Soon
+* Expired
+
+Use visual indicators.
+
+---
+
+# 52. DATA VALIDATION
+
+Implement strong validation.
+
+Examples:
+
+* Required fields
+* Valid phone numbers
+* Valid email
+* Unique employee code
+* Unique invoice number
+* Unique document numbers where appropriate
+* Valid dates
+* Expiry dates
+* Positive financial amounts
+* Valid currency
+* Valid salary
+* Duplicate prevention
+
+Show user-friendly validation messages.
+
+---
+
+# 53. DATABASE STRUCTURE
+
+Create a normalized SQLite database with tables such as:
+
+```text
+companies
+company_settings
+users
+roles
+permissions
+role_permissions
+audit_logs
+
+staff
+staff_documents
+staff_departments
+staff_designations
+
+attendance
+attendance_settings
+
+salaries
+salary_advances
+salary_deductions
+
+income
+income_categories
+
+expenses
+expense_categories
+
+customers
+vendors
+
+invoices
+invoice_items
+invoice_payments
+
+currencies
+exchange_rates
+
+reports
+report_settings
+
+app_settings
+themes
+
+backup_history
+notifications
+```
+
+Add additional tables where required by proper architecture.
+
+---
+
+# 54. DATABASE RELATIONSHIPS
+
+Use foreign keys.
+
+Examples:
+
+```text
+staff.id
+    ↓
+attendance.staff_id
+
+staff.id
+    ↓
+salaries.staff_id
+
+staff.id
+    ↓
+salary_advances.staff_id
+
+invoices.id
+    ↓
+invoice_items.invoice_id
+
+currencies.id
+    ↓
+financial_transactions.currency_id
+```
+
+Use cascading rules carefully.
+
+Never allow accidental destructive cascades for important financial records.
+
+---
+
+# 55. FINANCIAL DATA INTEGRITY
+
+Financial calculations must be reliable.
+
+Use SQLite transactions for:
+
+* Invoice creation
+* Invoice payment
+* Salary processing
+* Salary advance
+* Income entry
+* Expense entry
+
+If one part fails, rollback the transaction.
+
+Avoid floating-point calculation errors by using appropriate monetary storage/rounding strategy.
+
+---
+
+# 56. INVOICE STATUS
+
+Support:
+
+* Draft
+* Issued
+* Partially Paid
+* Paid
+* Overdue
+* Cancelled
+
+Do not physically delete finalized financial documents unless the user has appropriate permission.
+
+Prefer cancellation/voiding and audit logging.
+
+---
+
+# 57. PAYMENT MANAGEMENT
+
+Track invoice payments.
+
+Fields:
+
+* Payment ID
+* Invoice ID
+* Date
+* Amount
+* Currency
+* Exchange Rate
+* Payment Method
+* Reference
+* Notes
+* Received By
+
+Support partial payments.
+
+Automatically calculate:
+
+**Invoice Total**
+
+**Amount Paid**
+
+**Remaining Balance**
+
+---
+
+# 58. CUSTOMER MANAGEMENT
+
+Create customer register.
+
+Fields:
+
+* Customer ID
+* Customer Code
+* Name
+* Company
+* Phone
+* WhatsApp
+* Email
+* Address
+* Country
+* Tax/VAT Number
+* Notes
+* Status
+
+Customer history:
+
+* Invoices
+* Payments
+* Outstanding balance
+* Transaction history
+
+---
+
+# 59. REPORT PERFORMANCE
+
+Reports must be optimized for large datasets.
+
+Use:
+
+* Indexed date fields
+* Indexed foreign keys
+* Pagination
+* Lazy loading
+* Efficient SQL queries
+* Aggregation queries
+* Prepared statements
+
+Do not load thousands of records unnecessarily into the DOM.
+
+---
+
+# 60. TABLE FEATURES
+
+Data tables should provide:
+
+* Search
+* Sorting
+* Pagination
+* Filtering
+* Column visibility
+* Date filtering
+* Status filtering
+* Export
+* Print
+* Refresh
+
+Use clear empty states.
+
+---
+
+# 61. KEYBOARD SHORTCUTS
+
+Implement professional keyboard shortcuts.
+
+Examples:
+
+```text
+Ctrl + K       Global Search
+Ctrl + N       New Record
+Ctrl + S       Save
+Ctrl + P       Print
+Ctrl + B       Backup
+Ctrl + R       Refresh
+Ctrl + L       Lock
+Esc            Close Modal
+```
+
+Do not allow browser-default behavior to interfere with application functions.
+
+---
+
+# 62. ERROR HANDLING
+
+Implement centralized error handling.
+
+Never show raw stack traces to normal users.
+
+Display friendly messages such as:
+
+* "Unable to save record."
+* "Database operation failed."
+* "Invoice number already exists."
+* "Backup validation failed."
+
+Log technical details locally for debugging.
+
+---
+
+# 63. SECURITY
+
+Electron security must be treated seriously.
+
+Implement:
+
+* Context Isolation
+* Preload API
+* Secure IPC
+* Node Integration disabled in renderer
+* No unsafe remote content
+* Input validation
+* SQL parameterization
+* Password hashing
+* Role-based access control
+
+Never execute arbitrary SQL supplied by the renderer.
+
+---
+
+# 64. FILE SYSTEM SECURITY
+
+Use dedicated application directories.
+
+Do not allow unrestricted file deletion.
+
+Validate paths.
+
+Prevent path traversal.
+
+Only allow file operations inside approved RMS directories unless the user explicitly selects another location.
+
+---
+
+# 65. APPLICATION LOCK
+
+Implement application lock.
+
+When locked:
+
+* Hide sensitive data
+* Disable navigation
+* Require user password/PIN
+* Keep application running
+
+Allow auto-lock after configurable inactivity.
+
+---
+
+# 66. FIRST-LAUNCH EXPERIENCE
+
+Create professional startup flow:
+
+### Screen 1
+
+RMS logo animation.
+
+### Screen 2
+
+Loading application services.
+
+### Screen 3
+
+Database initialization.
+
+### Screen 4
+
+Company setup.
+
+### Screen 5
+
+Administrator account creation.
+
+### Screen 6
+
+Base currency selection.
+
+### Screen 7
+
+Theme selection.
+
+### Screen 8
+
+Complete setup.
+
+Then launch Dashboard.
+
+---
+
+# 67. SPLASH SCREEN
+
+Create a premium animated splash screen.
+
+Display:
+
+**RMS**
+
+**Report Management System**
+
+"Initializing your workspace..."
+
+Show progress/status messages.
+
+Do not make the splash unnecessarily long.
+
+---
+
+# 68. ABOUT APPLICATION
+
+Create a premium About screen.
+
+Display:
+
+**RMS**
+
+**Report Management System**
+
+Version
+
+Build
+
+Developer:
+
+**Engineer Qasim Ahmad**
+
+Email:
+
+**[info.virtuspk@gmail.com](mailto:info.virtuspk@gmail.com)**
+
+License:
+
+**MIT License**
+
+Include:
+
+* Application information
+* Technology stack
+* Version information
+* Database information
+* Copyright
+* Developer information
+* License information
+* Third-party acknowledgements if applicable
+
+Add modern animated UI.
+
+---
+
+# 69. LICENSE
+
+Application license:
+
+**MIT License**
+
+Include a proper MIT License notice inside the project.
+
+If third-party libraries are used, preserve their respective license/notice requirements.
+
+Do not falsely claim third-party software is MIT licensed if it is not.
+
+---
+
+# 70. COMPANY-BRANDED DOCUMENTS
+
+All generated documents should automatically use registered company information.
+
+Documents:
+
+* Invoices
+* Receipts
+* Daily Reports
+* Monthly Reports
+* Staff Reports
+* Salary Reports
+* Attendance Reports
+* Profit & Loss Reports
+
+Company logo and company information should be configurable.
+
+---
+
+# 71. REPORT NUMBERING
+
+Implement unique report numbers.
+
+Example:
+
+```text
+RMS-REP-2026-000001
+RMS-REP-2026-000002
+```
+
+Use SQLite uniqueness constraints.
+
+---
+
+# 72. DATA DASHBOARD REFRESH
+
+Whenever a user:
+
+* Adds income
+* Adds expense
+* Creates invoice
+* Receives payment
+* Pays salary
+* Adds advance
+* Marks attendance
+
+the dashboard should update immediately.
+
+No application restart should be required.
+
+---
+
+# 73. REALTIME EVENT ARCHITECTURE
+
+Use an internal event system.
+
+Example events:
+
+```text
+income.created
+income.updated
+expense.created
+expense.updated
+invoice.created
+invoice.updated
+invoice.paid
+salary.created
+salary.paid
+advance.created
+attendance.updated
+staff.updated
+currency.updated
+settings.updated
+backup.completed
+```
+
+Modules should subscribe to relevant events and refresh only the required UI.
+
+Avoid unnecessary full-page reloads.
+
+---
+
+# 74. APPLICATION SETTINGS REALTIME
+
+When the administrator changes:
+
+* Theme
+* Currency
+* Company name
+* Logo
+* Invoice settings
+* Date format
+* Time format
+* Sidebar mode
+* Animation setting
+
+the UI should update immediately where possible.
+
+---
+
+# 75. DARK MODE
+
+Dark mode must be a complete UI theme, not simply inverted colors.
+
+Ensure:
+
+* Proper contrast
+* Readable tables
+* Readable forms
+* Correct modal appearance
+* Correct dropdown appearance
+* Correct charts
+* Correct badges
+* Correct scrollbars
+
+---
+
+# 76. ACCESSIBILITY
+
+Implement:
+
+* Keyboard navigation
+* Visible focus states
+* Proper labels
+* Tooltips
+* Readable typography
+* Sufficient contrast
+* Clear validation messages
+
+---
+
+# 77. LOADING STATES
+
+Every potentially slow operation must provide feedback.
+
+Examples:
+
+* Database loading
+* Report generation
+* Backup creation
+* Restore operation
+* Printing
+* Exporting
+* Large data searches
+
+Use:
+
+* Spinner
+* Progress indicator
+* Status text
+* Disabled action buttons during processing
+
+---
+
+# 78. CONFIRMATION DIALOGS
+
+For destructive operations show confirmation.
+
+Examples:
+
+* Delete record
+* Cancel invoice
+* Restore backup
+* Delete backup
+* Remove staff
+* Reset settings
+
+Provide clear explanation of consequences.
+
+---
+
+# 79. SOFT DELETE
+
+For important business records use soft-delete where appropriate.
+
+Store:
+
+```text
+deleted_at
+deleted_by
+```
+
+Do not silently destroy important financial history.
+
+---
+
+# 80. DEVELOPMENT ARCHITECTURE
+
+Recommended project structure:
+
+```text
+RMS/
+│
+├── package.json
+├── electron/
+│   ├── main.js
+│   ├── preload.js
+│   ├── ipc/
+│   ├── services/
+│   └── security/
+│
+├── src/
+│   ├── index.html
+│   ├── css/
+│   ├── js/
+│   ├── components/
+│   ├── modules/
+│   │   ├── dashboard/
+│   │   ├── income/
+│   │   ├── expenses/
+│   │   ├── staff/
+│   │   ├── attendance/
+│   │   ├── salaries/
+│   │   ├── advances/
+│   │   ├── invoices/
+│   │   ├── reports/
+│   │   ├── currencies/
+│   │   ├── users/
+│   │   ├── settings/
+│   │   └── backup/
+│   │
+│   └── assets/
+│
+├── database/
+│   ├── migrations/
+│   ├── schema/
+│   └── seed/
+│
+├── storage/
+│   ├── staff/
+│   ├── company/
+│   ├── invoices/
+│   ├── reports/
+│   └── backups/
+│
+└── build/
+```
+
+The architecture may be improved if a better structure is required, but maintain clear separation of concerns.
+
+---
+
+# 81. CODE QUALITY
+
+Code must be:
+
+* Modular
+* Maintainable
+* Documented
+* Secure
+* Reusable
+* Scalable
+* DRY
+* Error handled
+
+Avoid:
+
+* Massive single JavaScript files
+* Inline SQL everywhere
+* Duplicate functions
+* Global variables unnecessarily
+* Hard-coded company information
+* Hard-coded currency
+* Hard-coded invoice numbers
+* Unsafe IPC
+
+---
+
+# 82. CONFIGURATION
+
+Do not hard-code:
+
+* Company Name
+* Company Logo
+* Currency
+* Invoice Prefix
+* Report Prefix
+* Tax settings
+* Theme
+* User settings
+* Backup location
+
+These must be configurable.
+
+---
+
+# 83. DATABASE MIGRATIONS
+
+Create a database migration system.
+
+Every database schema update should have a migration version.
+
+Example:
+
+```text
+001_initial_schema
+002_add_staff_documents
+003_add_invoice_payments
+004_add_audit_logs
+005_add_backup_metadata
+```
+
+Application must detect database version and migrate safely.
+
+---
+
+# 84. SAMPLE DATA
+
+Provide optional demo/sample data for development mode.
+
+Sample:
+
+* Company
+* Staff
+* Income
+* Expenses
+* Customers
+* Invoices
+* Attendance
+* Salaries
+
+Production mode should allow clean database initialization.
+
+---
+
+# 85. APPLICATION UPDATE ARCHITECTURE
+
+The initial application should be fully functional offline.
+
+If update functionality is later added, it must be optional and must not be required for normal application operation.
+
+---
+
+# 86. WINDOWS BUILD
+
+Create production-ready Windows packaging.
+
+Generate:
+
+```text
+RMS-Setup-x64.exe
+```
+
+Support:
+
+* Installation
+* Desktop shortcut
+* Start Menu shortcut
+* Uninstallation
+* Application data preservation options
+* Version information
+* Application icon
+
+Do not accidentally delete user database during normal uninstall unless explicitly selected.
+
+---
+
+# 87. APPLICATION DATA LOCATION
+
+Use an appropriate OS application-data directory for persistent data rather than storing the live database beside the executable.
+
+For example:
+
+```text
+RMS/
+    database/
+    storage/
+    backups/
+    logs/
+```
+
+The exact Windows location should be determined through Electron's appropriate application-data APIs.
+
+---
+
+# 88. LOGGING
+
+Create local application logs.
+
+Log:
+
+* Errors
+* Database failures
+* Backup failures
+* Restore failures
+* Printing errors
+* Application startup issues
+
+Do not log passwords or sensitive authentication secrets.
+
+---
+
+# 89. DATABASE HEALTH
+
+Create a Database Health section.
+
+Display:
+
+* Database size
+* Record counts
+* Last backup
+* Backup status
+* Database version
+* Integrity status
+* Storage usage
+
+Provide:
+
+**Verify Database**
+
+and:
+
+**Create Backup**
+
+actions.
+
+---
+
+# 90. PROFESSIONAL EMPTY STATES
+
+Every module should have a professional empty state.
+
+Example:
+
+"No expenses found"
+
+Buttons:
+
+**Add Expense**
+
+**Import Data**
+
+---
+
+# 91. PROFESSIONAL TOAST SYSTEM
+
+Create reusable toast notifications.
+
+Types:
+
+* Success
+* Error
+* Warning
+* Information
+
+Examples:
+
+"Income successfully added."
+
+"Invoice RMS-INV-2026-000125 created successfully."
+
+"Backup completed successfully."
+
+---
+
+# 92. FORM DESIGN
+
+Forms should be divided into logical sections.
+
+Use:
+
+* Floating labels where appropriate
+* Input groups
+* Icons
+* Validation
+* Required indicators
+* Date pickers
+* Dropdowns
+* Searchable selects
+* Image upload preview
+
+Avoid extremely long unstructured forms.
+
+---
+
+# 93. STAFF REGISTRATION UX
+
+Staff form should use tabs:
+
+### Tab 1
+
+Personal Information
+
+### Tab 2
+
+Contact
+
+### Tab 3
+
+Identification
+
+### Tab 4
+
+Visa/Passport
+
+### Tab 5
+
+Employment
+
+### Tab 6
+
+Salary
+
+### Tab 7
+
+Documents
+
+### Tab 8
+
+Notes
+
+This makes the large form easy to manage.
+
+---
+
+# 94. REPORT BUILDER
+
+Create a flexible report generation interface.
+
+User selects:
+
+```text
+Report Type
+↓
+Date Range
+↓
+Filters
+↓
+Columns
+↓
+Currency
+↓
+Generate
+```
+
+Then show report preview.
+
+Actions:
+
+* Print
+* PDF
+* CSV
+* Excel
+* Save Report
+
+---
+
+# 95. FINANCIAL SUMMARY
+
+Every financial report should clearly show:
+
+```text
+Total Income
+- Total Expenses
+----------------
+Net Profit
+```
+
+Additionally:
+
+```text
+Income by Category
+Expense by Category
+Profit by Period
+```
+
+---
+
+# 96. MONTHLY REPORT
+
+Monthly report must contain:
+
+* Opening balance where applicable
+* Total income
+* Total expenses
+* Staff salaries
+* Advances
+* Invoice totals
+* Paid invoices
+* Pending invoices
+* Net profit
+* Expense categories
+* Income categories
+* Attendance summary
+* Staff salary summary
+
+---
+
+# 97. YEARLY REPORT
+
+Yearly report should display month-by-month:
+
+```text
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+```
+
+For each month:
+
+* Income
+* Expenses
+* Profit
+
+Also show yearly totals.
+
+---
+
+# 98. STAFF MONTHLY REPORT
+
+For each staff member:
+
+```text
+Staff Name
+Department
+Designation
+
+Present
+Absent
+Late
+Leave
+Working Hours
+Overtime
+
+Basic Salary
+Allowance
+Bonus
+Deduction
+Advance
+Net Salary
+```
+
+---
+
+# 99. CURRENCY DISPLAY
+
+Currency symbols should automatically appear according to selected currency.
+
+Example:
+
+```text
+AED 1,250.00
+د.إ 1,250.00
+$1,250.00
+₨ 1,250.00
+€1,250.00
+```
+
+Allow configurable symbol position:
+
+* Before amount
+* After amount
+
+---
+
+# 100. PERFORMANCE REQUIREMENTS
+
+RMS should feel fast.
+
+Target:
+
+* Fast startup
+* Fast navigation
+* Instant form response
+* Efficient SQLite queries
+* Smooth animations
+* No unnecessary UI blocking
+
+Heavy operations should run asynchronously.
+
+---
+
+# 101. NO INTERNET DEPENDENCY
+
+Do not make core functionality dependent on:
+
+* CDN resources
+* Remote fonts
+* Remote Bootstrap files
+* Remote JavaScript libraries
+* External APIs
+
+For a truly offline application, package required frontend dependencies locally.
+
+---
+
+# 102. BACKUP SAFETY
+
+Never allow a failed backup to be reported as successful.
+
+Backup workflow:
+
+```text
+Start Backup
+      ↓
+Flush/Checkpoint Database
+      ↓
+Create Backup Package
+      ↓
+Generate Integrity Metadata
+      ↓
+Verify Package
+      ↓
+Save .bak
+      ↓
+Verify Again
+      ↓
+Show Success
+```
+
+---
+
+# 103. RESTORE SAFETY
+
+Restore workflow:
+
+```text
+Select .bak
+      ↓
+Validate
+      ↓
+Read Metadata
+      ↓
+Verify Integrity
+      ↓
+Create Current Safety Backup
+      ↓
+Confirm User
+      ↓
+Restore
+      ↓
+Verify Database
+      ↓
+Reload Application
+```
+
+---
+
+# 104. USER EXPERIENCE
+
+The application should always clearly communicate:
+
+* What happened
+* Whether an operation succeeded
+* Whether an operation failed
+* What the user should do next
+
+Avoid technical error messages.
+
+---
+
+# 105. FINAL QUALITY STANDARD
+
+Do NOT build this as a basic CRUD application.
+
+It must feel like a:
+
+**Professional Commercial Desktop Business Management System**
+
+with:
+
+* Modern UI
+* Beautiful UI
+* Responsive UI
+* Animated UI
+* Secure architecture
+* Offline-first architecture
+* Strong database architecture
+* Professional reporting
+* Financial accuracy
+* Staff management
+* Attendance
+* Salary
+* Advances
+* Invoice system
+* Thermal printing
+* Multi-currency
+* User permissions
+* Audit logs
+* Backup/restore
+* Seven themes
+* Company branding
+
+---
+
+# 106. IMPORTANT DEVELOPMENT RULE
+
+Before implementing each module:
+
+1. Design database schema.
+2. Define relationships.
+3. Define validation.
+4. Define permissions.
+5. Define IPC API.
+6. Build backend service.
+7. Build frontend UI.
+8. Connect database.
+9. Add realtime event updates.
+10. Add error handling.
+11. Add audit logging.
+12. Test CRUD operations.
+13. Test edge cases.
+14. Test reports.
+15. Test backup/restore.
+16. Test printing.
+
+---
+
+# 107. COMPLETE MODULE CHECKLIST
+
+The final application must include:
+
+* [ ] Splash Screen
+* [ ] First Run Wizard
+* [ ] Company Registration
+* [ ] Admin Registration
+* [ ] Login
+* [ ] Application Lock
+* [ ] Dashboard
+* [ ] Global Search
+* [ ] Notifications
+* [ ] Income Management
+* [ ] Expense Management
+* [ ] Profit & Loss
+* [ ] Daily Reports
+* [ ] Weekly Reports
+* [ ] Monthly Reports
+* [ ] 3-Month Reports
+* [ ] 6-Month Reports
+* [ ] Annual Reports
+* [ ] Staff Register
+* [ ] Staff Images
+* [ ] Staff Documents
+* [ ] Staff Attendance
+* [ ] Staff Salary
+* [ ] Salary Advances
+* [ ] Staff Performance
+* [ ] Customer Management
+* [ ] Invoice Management
+* [ ] Invoice Number Generator
+* [ ] Thermal Invoice
+* [ ] 58mm Printing
+* [ ] 80mm Printing
+* [ ] A4 Printing
+* [ ] Payment Management
+* [ ] Multi-Currency
+* [ ] Exchange Rates
+* [ ] User Management
+* [ ] Role Management
+* [ ] Permission Management
+* [ ] Audit Logs
+* [ ] Seven Themes
+* [ ] Application Settings
+* [ ] Database Health
+* [ ] Backup
+* [ ] .BAK Backup Format
+* [ ] Restore .BAK
+* [ ] Automatic Backup
+* [ ] Report Export
+* [ ] Print System
+* [ ] About Application
+* [ ] MIT License
+* [ ] Developer Information
+
+---
+
+# 108. DEVELOPER INFORMATION
+
+About RMS:
+
+**Application:** RMS — Report Management System
+
+**Developer:** Engineer Qasim Ahmad
+
+**Email:** [info.virtuspk@gmail.com](mailto:info.virtuspk@gmail.com)
+
+**License:** MIT License
+
+The About section should have a premium modern animated design.
+
+---
+
+# 109. FINAL IMPLEMENTATION REQUIREMENT
+
+Generate the application as a complete working project.
+
+Do not provide pseudo-code only.
+
+Do not create fake buttons.
+
+Do not create non-functional UI placeholders.
+
+Every major button must perform its intended action.
+
+Every form must connect to SQLite.
+
+Every report must calculate actual database data.
+
+Every invoice must generate a unique invoice number.
+
+Every financial calculation must be based on actual stored transactions.
+
+Every staff report must use actual staff records.
+
+Backup must create actual `.bak` files.
+
+Restore must actually restore valid `.bak` files.
+
+Thermal printing must be implemented through Electron's printer functionality.
+
+All application settings must persist.
+
+Themes must persist.
+
+User permissions must actually be enforced.
+
+The final application must be suitable for packaging into a Windows `.exe` installer.
+
+---
+
+# 110. EXPECTED FINAL RESULT
+
+The final result should be:
+
+**RMS — Report Management System**
+
+A powerful, secure, modern, beautiful, animated, responsive and completely offline Windows Desktop Business Management System capable of managing:
+
+**Company + Income + Expenses + Profit + Staff + Attendance + Salary + Advances + Performance + Customers + Invoices + Thermal Printing + Multi-Currency + Reports + Users + Permissions + Audit Logs + Settings + 7 Themes + Backup + Restore**
+
+using:
+
+**Electron.js + Node.js + HTML5 + CSS3 + JavaScript ES6+ + Bootstrap 5 + SQLite**
+
+with **Engineer Qasim Ahmad** shown as the developer and **MIT License** applied to the application source code.

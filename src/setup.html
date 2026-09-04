@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: https: file:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; img-src 'self' data: https: file:;">
+    <title>RMS Setup — Company Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.35);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.3);
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.35);
+            --bg-dark: #090d16;
+            --card-bg: rgba(17, 24, 39, 0.82);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.04);
+            --input-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 15% 15%, #1e1b4b 0%, #0c1222 45%, #020617 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 24px;
+            color: var(--text-main);
+        }
+
+        /* Ambient Animated Glowing Orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 16s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #4f46e5;
+            top: -150px;
+            left: -150px;
+        }
+
+        .orb-2 {
+            width: 450px;
+            height: 450px;
+            background: #06b6d4;
+            bottom: -120px;
+            right: -120px;
+            animation-duration: 20s;
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 380px;
+            height: 380px;
+            background: #8b5cf6;
+            top: 45%;
+            left: 55%;
+            animation-duration: 14s;
+            animation-delay: -2s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(45px, -35px) scale(1.06); }
+            100% { transform: translate(-35px, 45px) scale(0.96); }
+        }
+
+        /* Main Container Card */
+        .setup-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 980px;
+            background: var(--card-bg);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 40px rgba(99, 102, 241, 0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: cardEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 94vh;
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Setup Header */
+        .setup-header {
+            padding: 28px 36px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #ffffff;
+            box-shadow: 0 8px 20px var(--primary-glow);
+        }
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 3px 0 0 0;
+        }
+
+        .step-badge {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Stepper Navigation */
+        .stepper-nav-container {
+            padding: 16px 36px 18px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+
+        .stepper-nav {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stepper-progress-track {
+            position: absolute;
+            top: 36px;
+            left: 56px;
+            right: 56px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            z-index: 1;
+            border-radius: 3px;
+        }
+
+        .stepper-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #06b6d4);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.25s ease;
+        }
+
+        .step-bubble {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-bottom: 6px;
+        }
+
+        .step-item.active .step-bubble {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-color: #818cf8;
+            color: #ffffff;
+            box-shadow: 0 0 18px var(--primary-glow);
+            transform: scale(1.12);
+        }
+
+        .step-item.completed .step-bubble {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: #34d399;
+            color: #ffffff;
+            box-shadow: 0 0 14px var(--success-glow);
+        }
+
+        .step-title-text {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            text-align: center;
+        }
+
+        .step-item.active .step-title-text {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .step-item.completed .step-title-text {
+            color: #a7f3d0;
+        }
+
+        /* Step Body / Content */
+        .setup-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 40px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+        }
+
+        .setup-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .setup-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .step-pane {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .step-pane.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #818cf8;
+            font-size: 18px;
+        }
+
+        .section-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Form Controls */
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .form-label .req {
+            color: #f43f5e;
+        }
+
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group-custom i.input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 14px;
+            transition: color 0.2s;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .form-control-custom, .form-select-custom {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            padding: 12px 14px 12px 40px;
+            color: #ffffff;
+            font-size: 13px;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .form-control-custom:focus, .form-select-custom:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px var(--primary-glow);
+            color: #ffffff;
+        }
+
+        .input-group-custom:focus-within i.input-icon {
+            color: #818cf8;
+        }
+
+        .form-control-custom::placeholder {
+            color: #64748b;
+        }
+
+        .form-select-custom option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        textarea.form-control-custom {
+            padding-left: 14px;
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        /* Interactive Currency Selector */
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+        }
+
+        .currency-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .currency-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .currency-card.selected {
+            background: rgba(99, 102, 241, 0.16);
+            border-color: #818cf8;
+            box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .currency-code {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .currency-symbol {
+            font-size: 12px;
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        /* Summary Step Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .summary-card:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .summary-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .summary-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #818cf8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .summary-label {
+            color: var(--text-muted);
+            flex: 1;
+        }
+
+        .summary-val {
+            color: #ffffff;
+            font-weight: 600;
+            text-align: right;
+            flex: 1.2;
+            word-break: break-word;
+        }
+
+        /* Success Step Animation */
+        .success-wrapper {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon-ring {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.4) 100%);
+            border: 2px solid #34d399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #34d399;
+            margin: 0 auto 24px;
+            box-shadow: 0 0 30px var(--success-glow);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 20px var(--success-glow); }
+            100% { transform: scale(1.06); box-shadow: 0 0 35px rgba(52, 211, 153, 0.55); }
+        }
+
+        .success-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .success-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* Setup Footer Navigation */
+        .setup-footer {
+            padding: 20px 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-modern {
+            padding: 11px 24px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+        }
+
+        .btn-secondary-modern {
+            background: rgba(255, 255, 255, 0.07);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary-modern:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            transform: translateX(-2px);
+        }
+
+        .btn-secondary-modern:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .btn-primary-modern {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-primary-modern:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .btn-success-modern {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px var(--success-glow);
+        }
+
+        .btn-success-modern:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .is-invalid-input {
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.3) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+
+    <div class="setup-wrapper">
+        <!-- Header -->
+        <div class="setup-header">
+            <div class="header-brand">
+                <div class="brand-icon-box">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div>
+                    <h1 class="header-title">RMS Workspace Setup</h1>
+                    <p class="header-subtitle">Report Management System — Organization Configuration</p>
+                </div>
+            </div>
+            <div class="step-badge" id="stepBadge">
+                <i class="fas fa-layer-group"></i> <span id="stepBadgeText">Step 1 of 6</span>
+            </div>
+        </div>
+
+        <!-- Stepper Navigation -->
+        <div class="stepper-nav-container">
+            <div class="stepper-progress-track">
+                <div class="stepper-progress-fill" id="stepperProgressFill"></div>
+            </div>
+            <div class="stepper-nav" id="stepperNav">
+                <div class="step-item active" data-step="1" onclick="SetupWizard.goToStep(1)">
+                    <div class="step-bubble"><i class="fas fa-building"></i></div>
+                    <span class="step-title-text">Basic Info</span>
+                </div>
+                <div class="step-item" data-step="2" onclick="SetupWizard.goToStep(2)">
+                    <div class="step-bubble"><i class="fas fa-address-book"></i></div>
+                    <span class="step-title-text">Contact</span>
+                </div>
+                <div class="step-item" data-step="3" onclick="SetupWizard.goToStep(3)">
+                    <div class="step-bubble"><i class="fas fa-briefcase"></i></div>
+                    <span class="step-title-text">Business</span>
+                </div>
+                <div class="step-item" data-step="4" onclick="SetupWizard.goToStep(4)">
+                    <div class="step-bubble"><i class="fas fa-coins"></i></div>
+                    <span class="step-title-text">Financial</span>
+                </div>
+                <div class="step-item" data-step="5" onclick="SetupWizard.goToStep(5)">
+                    <div class="step-bubble"><i class="fas fa-sliders-h"></i></div>
+                    <span class="step-title-text">Settings</span>
+                </div>
+                <div class="step-item" data-step="6" onclick="SetupWizard.goToStep(6)">
+                    <div class="step-bubble"><i class="fas fa-clipboard-check"></i></div>
+                    <span class="step-title-text">Summary</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setup Body & Forms -->
+        <div class="setup-body">
+            <form id="setupForm" novalidate>
+                <!-- Step 1: Basic Info -->
+                <div class="step-pane active" data-step="1">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-info-circle"></i> Basic Company Information</h2>
+                        <p class="section-desc">Enter your primary business name, brand, and corporate structure.</p>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Company Name <span class="req">*</span></label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-building input-icon"></i>
+                                <input type="text" class="form-control-custom" name="company_name" required placeholder="e.g. Apex Global Trading LLC">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Legal Registered Name</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-file-contract input-icon"></i>
+                                <input type="text" class="form-control-custom" name="legal_company_name" placeholder="Official legal entity name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Trade / Brand Name</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-tag input-icon"></i>
+                                <input type="text" class="form-control-custom" name="trade_name" placeholder="Commercial trade name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Company Type</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-landmark input-icon"></i>
+                                <select class="form-select-custom" name="company_type">
+                                    <option value="LLC">Limited Liability Company (LLC)</option>
+                                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                    <option value="Corporation">Corporation (Inc./Corp.)</option>
+                                    <option value="Partnership">Partnership</option>
+                                    <option value="Freezone">Free Zone Entity (FZ-LLC)</option>
+                                    <option value="Branch">Branch of Foreign Company</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Business Activity Description</label>
+                            <div class="input-group-custom">
+                                <textarea class="form-control-custom" name="business_activity" placeholder="Briefly describe your commercial operations and primary services..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact Info -->
+                <div class="step-pane" data-step="2">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-envelope-open-text"></i> Contact & Location Details</h2>
+                        <p class="section-desc">Add contact details for invoices, reports, and official documentation.</p>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Company Email <span class="req">*</span></label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" class="form-control-custom" name="email" required placeholder="contact@company.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number <span class="req">*</span></label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input type="text" class="form-control-custom" name="phone" required placeholder="+971 4 123 4567">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">WhatsApp Number</label>
+                            <div class="input-group-custom">
+                                <i class="fab fa-whatsapp input-icon"></i>
+                                <input type="text" class="form-control-custom" name="whatsapp" placeholder="+971 50 123 4567">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Official Website</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-globe input-icon"></i>
+                                <input type="url" class="form-control-custom" name="website" placeholder="https://www.company.com">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Physical Address</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                                <input type="text" class="form-control-custom" name="address" placeholder="Suite 402, Business Bay Tower">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">City</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-city input-icon"></i>
+                                <input type="text" class="form-control-custom" name="city" placeholder="Dubai">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">State / Province</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-map input-icon"></i>
+                                <input type="text" class="form-control-custom" name="state_province" placeholder="Dubai / Federal">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Country</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-flag input-icon"></i>
+                                <input type="text" class="form-control-custom" name="country" placeholder="United Arab Emirates">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Business Details -->
+                <div class="step-pane" data-step="3">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-stamp"></i> Trade & Tax Identifiers</h2>
+                        <p class="section-desc">Enter legal registration numbers, tax identification, and signatories.</p>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Registration / CR Number</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-id-card input-icon"></i>
+                                <input type="text" class="form-control-custom" name="registration_number" placeholder="e.g. CR-894721">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Trade License Number</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-certificate input-icon"></i>
+                                <input type="text" class="form-control-custom" name="trade_license_number" placeholder="e.g. TL-2026-991">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tax / VAT Registration (TRN)</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-percentage input-icon"></i>
+                                <input type="text" class="form-control-custom" name="tax_vat_number" placeholder="100XXXXXXXXX003">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Establishment Number</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-warehouse input-icon"></i>
+                                <input type="text" class="form-control-custom" name="establishment_number" placeholder="MOHRE / Chamber ID">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Authorized Signatory Person</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-user-tie input-icon"></i>
+                                <input type="text" class="form-control-custom" name="authorized_person" placeholder="e.g. Managing Director">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Signatory Designation</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-award input-icon"></i>
+                                <input type="text" class="form-control-custom" name="authorized_person_designation" placeholder="e.g. CEO / General Manager">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Financial Settings -->
+                <div class="step-pane" data-step="4">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-money-bill-wave"></i> Financial & Currency Setup</h2>
+                        <p class="section-desc">Select your organization's primary base currency and document prefixes.</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Base Operating Currency <span class="req">*</span></label>
+                        <div class="currency-grid" id="currencyGrid">
+                            <div class="currency-card selected" data-currency="AED" data-symbol="د.إ">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-symbol">د.إ</span>
+                            </div>
+                            <div class="currency-card" data-currency="USD" data-symbol="$">
+                                <span class="currency-code">USD</span>
+                                <span class="currency-symbol">$</span>
+                            </div>
+                            <div class="currency-card" data-currency="EUR" data-symbol="€">
+                                <span class="currency-code">EUR</span>
+                                <span class="currency-symbol">€</span>
+                            </div>
+                            <div class="currency-card" data-currency="GBP" data-symbol="£">
+                                <span class="currency-code">GBP</span>
+                                <span class="currency-symbol">£</span>
+                            </div>
+                            <div class="currency-card" data-currency="SAR" data-symbol="﷼">
+                                <span class="currency-code">SAR</span>
+                                <span class="currency-symbol">﷼</span>
+                            </div>
+                            <div class="currency-card" data-currency="PKR" data-symbol="₨">
+                                <span class="currency-code">PKR</span>
+                                <span class="currency-symbol">₨</span>
+                            </div>
+                            <div class="currency-card" data-currency="INR" data-symbol="₹">
+                                <span class="currency-code">INR</span>
+                                <span class="currency-symbol">₹</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="currency" id="selectedCurrency" value="AED">
+                        <input type="hidden" name="currency_symbol" id="selectedCurrencySymbol" value="د.إ">
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Invoice Number Prefix</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-file-invoice input-icon"></i>
+                                <input type="text" class="form-control-custom" name="invoice_prefix" value="INV" placeholder="INV">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Report Number Prefix</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-file-signature input-icon"></i>
+                                <input type="text" class="form-control-custom" name="report_prefix" value="REP" placeholder="REP">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Financial Year Start</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                                <select class="form-select-custom" name="financial_year_start">
+                                    <option value="January">January</option>
+                                    <option value="April">April</option>
+                                    <option value="July">July</option>
+                                    <option value="October">October</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Timezone</label>
+                            <div class="input-group-custom">
+                                <i class="fas fa-clock input-icon"></i>
+                                <select class="form-select-custom" name="time_zone">
+                                    <option value="Asia/Dubai">Asia/Dubai (UTC+4)</option>
+                                    <option value="Asia/Karachi">Asia/Karachi (UTC+5)</option>
+                                    <option value="Asia/Riyadh">Asia/Riyadh (UTC+3)</option>
+                                    <option value="Asia/Kolkata">Asia/Kolkata (UTC+5:30)</option>
+                                    <option value="Europe/London">Europe/London (GMT/BST)</option>
+                                    <option value="America/New_York">America/New_York (EST)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Document Footers & Terms -->
+                <div class="step-pane" data-step="5">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-file-alt"></i> Document Footers & Policies</h2>
+                        <p class="section-desc">Customize default notices, signatures, and terms displayed on generated documents.</p>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label">Invoice Default Footer Note</label>
+                            <div class="input-group-custom">
+                                <textarea class="form-control-custom" name="invoice_footer" placeholder="Thank you for your business. For any inquiries, please contact our accounts department."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Report Default Footer Note</label>
+                            <div class="input-group-custom">
+                                <textarea class="form-control-custom" name="report_footer" placeholder="This is a computer-generated report verified by RMS Enterprise System."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Standard Payment Terms & Conditions</label>
+                            <div class="input-group-custom">
+                                <textarea class="form-control-custom" style="min-height: 100px;" name="terms_conditions" placeholder="1. Payment is due within 30 days of invoice date.&#10;2. Overdue balances may incur a 1.5% monthly service charge."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Summary & Review -->
+                <div class="step-pane" data-step="6">
+                    <div class="section-header">
+                        <h2 class="section-title"><i class="fas fa-check-double"></i> Review Company Information</h2>
+                        <p class="section-desc">Verify your organization configuration before initializing the database.</p>
+                    </div>
+
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h4 class="summary-card-title"><i class="fas fa-building"></i> Basic Entity</h4>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Company Name:</span>
+                                <span class="summary-val" id="sum_company_name">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Legal Name:</span>
+                                <span class="summary-val" id="sum_legal_name">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Type:</span>
+                                <span class="summary-val" id="sum_type">—</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h4 class="summary-card-title"><i class="fas fa-address-card"></i> Contact</h4>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Email:</span>
+                                <span class="summary-val" id="sum_email">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Phone:</span>
+                                <span class="summary-val" id="sum_phone">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Address:</span>
+                                <span class="summary-val" id="sum_address">—</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-card">
+                            <div class="summary-card-header">
+                                <h4 class="summary-card-title"><i class="fas fa-coins"></i> Financials</h4>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Base Currency:</span>
+                                <span class="summary-val" id="sum_currency">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Invoice Prefix:</span>
+                                <span class="summary-val" id="sum_invoice_prefix">—</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label">Fiscal Year:</span>
+                                <span class="summary-val" id="sum_fiscal">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Setup Complete -->
+                <div class="step-pane" data-step="7">
+                    <div class="success-wrapper">
+                        <div class="success-icon-ring">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 class="success-title">Company Setup Complete!</h2>
+                        <p class="success-subtitle">
+                            Your organization workspace has been created and initialized in the database. Now proceed to create your primary Administrator Account.
+                        </p>
+                        <button type="button" class="btn-modern btn-primary-modern px-4 py-3" id="btnLaunchAdminSetup" style="font-size: 15px;">
+                            <i class="fas fa-user-shield"></i> Continue to Administrator Setup <i class="fas fa-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer Navigation -->
+        <div class="setup-footer" id="setupFooter">
+            <button type="button" class="btn-modern btn-secondary-modern" id="btnPrev" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-modern btn-primary-modern" id="btnNext">
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const SetupWizard = {
+            currentStep: 1,
+            totalSteps: 6,
+            formData: {},
+
+            init() {
+                this.bindEvents();
+                this.updateUI();
+            },
+
+            bindEvents() {
+                // Currency cards
+                document.querySelectorAll('.currency-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        document.querySelectorAll('.currency-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        document.getElementById('selectedCurrency').value = card.dataset.currency;
+                        document.getElementById('selectedCurrencySymbol').value = card.dataset.symbol;
+                    });
+                });
+
+                // Next & Prev buttons
+                document.getElementById('btnPrev').addEventListener('click', () => this.prevStep());
+                document.getElementById('btnNext').addEventListener('click', () => this.nextStep());
+
+                // Admin setup redirect button
+                document.getElementById('btnLaunchAdminSetup').addEventListener('click', () => {
+                    if (window.electronAPI && window.electronAPI.app && window.electronAPI.app.navigate) {
+                        window.electronAPI.app.navigate('admin-setup.html');
+                    } else {
+                        window.location.href = 'admin-setup.html';
+                    }
+                });
+            },
+
+            goToStep(stepNum) {
+                if (stepNum < this.currentStep) {
+                    this.currentStep = stepNum;
+                    this.updateUI();
+                } else if (stepNum > this.currentStep) {
+                    if (this.validateStep(this.currentStep)) {
+                        this.currentStep = stepNum;
+                        this.updateUI();
+                    }
+                }
+            },
+
+            validateStep(step) {
+                const pane = document.querySelector(`.step-pane[data-step="${step}"]`);
+                if (!pane) return true;
+
+                const requiredFields = pane.querySelectorAll('[required]');
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid-input');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('is-invalid-input');
+                    }
+                });
+
+                const emailField = pane.querySelector('input[type="email"]');
+                if (emailField && emailField.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailField.value.trim())) {
+                        emailField.classList.add('is-invalid-input');
+                        isValid = false;
+                    }
+                }
+
+                return isValid;
+            },
+
+            nextStep() {
+                if (!this.validateStep(this.currentStep)) return;
+
+                if (this.currentStep < this.totalSteps) {
+                    this.currentStep++;
+                    this.updateUI();
+                } else if (this.currentStep === this.totalSteps) {
+                    this.submitSetup();
+                }
+            },
+
+            prevStep() {
+                if (this.currentStep > 1) {
+                    this.currentStep--;
+                    this.updateUI();
+                }
+            },
+
+            updateUI() {
+                // Update Stepper Nav
+                document.querySelectorAll('.step-item').forEach(item => {
+                    const s = parseInt(item.dataset.step);
+                    item.classList.remove('active', 'completed');
+                    if (s === this.currentStep) item.classList.add('active');
+                    else if (s < this.currentStep) item.classList.add('completed');
+                });
+
+                // Progress line
+                const progressPct = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
+                document.getElementById('stepperProgressFill').style.width = `${progressPct}%`;
+
+                // Header badge
+                document.getElementById('stepBadgeText').textContent = `Step ${this.currentStep} of ${this.totalSteps}`;
+
+                // Show active pane
+                document.querySelectorAll('.step-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                    if (parseInt(pane.dataset.step) === this.currentStep) {
+                        pane.classList.add('active');
+                    }
+                });
+
+                // Footer button states
+                const btnPrev = document.getElementById('btnPrev');
+                const btnNext = document.getElementById('btnNext');
+                const setupFooter = document.getElementById('setupFooter');
+
+                if (this.currentStep === 7) {
+                    setupFooter.style.display = 'none';
+                    document.getElementById('stepperNav').parentElement.style.display = 'none';
+                    document.getElementById('stepBadge').style.display = 'none';
+                } else {
+                    setupFooter.style.display = 'flex';
+                    btnPrev.disabled = this.currentStep === 1;
+
+                    if (this.currentStep === this.totalSteps) {
+                        btnNext.innerHTML = 'Complete Setup <i class="fas fa-check"></i>';
+                        btnNext.className = 'btn-modern btn-success-modern';
+                        this.populateSummary();
+                    } else {
+                        btnNext.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                        btnNext.className = 'btn-modern btn-primary-modern';
+                    }
+                }
+            },
+
+            populateSummary() {
+                const fd = new FormData(document.getElementById('setupForm'));
+                this.formData = Object.fromEntries(fd);
+
+                document.getElementById('sum_company_name').textContent = this.formData.company_name || '—';
+                document.getElementById('sum_legal_name').textContent = this.formData.legal_company_name || '—';
+                document.getElementById('sum_type').textContent = this.formData.company_type || '—';
+                document.getElementById('sum_email').textContent = this.formData.email || '—';
+                document.getElementById('sum_phone').textContent = this.formData.phone || '—';
+                document.getElementById('sum_address').textContent = this.formData.address || '—';
+                document.getElementById('sum_currency').textContent = `${this.formData.currency || 'AED'} (${this.formData.currency_symbol || 'د.إ'})`;
+                document.getElementById('sum_invoice_prefix').textContent = this.formData.invoice_prefix || 'INV';
+                document.getElementById('sum_fiscal').textContent = this.formData.financial_year_start || 'January';
+            },
+
+            async submitSetup() {
+                try {
+                    const fd = new FormData(document.getElementById('setupForm'));
+                    this.formData = Object.fromEntries(fd);
+                    this.formData.created_at = new Date().toISOString();
+
+                    if (window.electronAPI && window.electronAPI.company && window.electronAPI.company.register) {
+                        await window.electronAPI.company.register(this.formData);
+                    }
+
+                    this.currentStep = 7;
+                    this.updateUI();
+                } catch (err) {
+                    console.error('Registration failed:', err);
+                    alert('Error completing setup: ' + (err.message || 'Please verify form fields and try again.'));
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            SetupWizard.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<div class="about-container">
+    <style>
+        .about-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 10px 15px 40px;
+            animation: fadeInAbout 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInAbout {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Showcase Card */
+        .about-hero-card {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 35px rgba(99, 102, 241, 0.12);
+            margin-bottom: 24px;
+        }
+
+        .about-hero-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(6, 182, 212, 0) 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            filter: blur(40px);
+            animation: pulseAura 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseAura {
+            0% { transform: translateX(-50%) scale(0.9); opacity: 0.3; }
+            100% { transform: translateX(-50%) scale(1.15); opacity: 0.55; }
+        }
+
+        .about-brand-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.45);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            animation: floatIcon 3.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        .about-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-subtitle {
+            font-size: 15px;
+            color: #94a3b8;
+            font-weight: 500;
+            max-width: 580px;
+            margin: 0 auto 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-badge-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            transition: all 0.25s ease;
+        }
+
+        .about-pill.primary {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.35);
+            color: #a5b4fc;
+        }
+
+        .about-pill.success {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.35);
+            color: #6ee7b7;
+        }
+
+        .about-pill.cyan {
+            background: rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.35);
+            color: #67e8f9;
+        }
+
+        /* Live Diagnostics Grid */
+        .diag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .diag-card {
+            background: var(--card-bg, rgba(17, 24, 39, 0.8));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 18px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diag-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15), 0 0 20px rgba(99, 102, 241, 0.08);
+        }
+
+        .diag-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .diag-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .diag-card-val {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary, #ffffff);
+            margin-bottom: 2px;
+            letter-spacing: -0.3px;
+        }
+
+        .diag-card-label {
+            font-size: 12px;
+            color: var(--text-secondary, #94a3b8);
+            font-weight: 500;
+        }
+
+        /* Feature Cards Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .feature-box {
+            background: var(--card-bg, rgba(17, 24, 39, 0.8));
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 18px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.12);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary, #ffffff);
+            margin: 0;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-secondary, #94a3b8);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Developer & System Info Card */
+        .dev-card {
+            background: var(--card-bg, rgba(17, 24, 39, 0.8));
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 20px;
+            padding: 26px 30px;
+            margin-bottom: 24px;
+        }
+
+        .dev-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+        }
+
+        .dev-info-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .dev-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 800;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+        }
+
+        .dev-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary, #ffffff);
+            margin: 0 0 3px 0;
+        }
+
+        .dev-role {
+            font-size: 12px;
+            color: #06b6d4;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .dev-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-about-action {
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary, #ffffff);
+            text-decoration: none;
+        }
+
+        .btn-about-action:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.4);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+        }
+
+        .spec-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px 14px;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: var(--text-secondary, #94a3b8);
+            margin-bottom: 2px;
+        }
+
+        .spec-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary, #ffffff);
+        }
+
+        /* Interactive Integrity Action Bar */
+        .diag-action-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            margin-top: 18px;
+        }
+
+        .diag-action-text {
+            font-size: 12px;
+            color: var(--text-secondary, #cbd5e1);
+        }
+
+        .btn-run-check {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-run-check:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+            color: #ffffff;
+        }
+
+        /* Footer Copyright */
+        .about-footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary, #64748b);
+            padding-top: 10px;
+        }
+    </style>
+
+    <!-- Hero Showcase -->
+    <div class="about-hero-card">
+        <div class="about-hero-glow"></div>
+        <div class="about-brand-icon">
+            <i class="fas fa-chart-pie"></i>
+        </div>
+        <h1 class="about-title">RMS Enterprise Suite</h1>
+        <p class="about-subtitle">
+            Modern, High-Performance Offline Desktop Management & Intelligence Platform
+        </p>
+        <div class="about-badge-pills">
+            <span class="about-pill primary"><i class="fas fa-shield-alt"></i> Enterprise Pro v2.4.0</span>
+            <span class="about-pill success"><i class="fas fa-database"></i> 100% Offline SQLite Core</span>
+            <span class="about-pill cyan"><i class="fas fa-bolt"></i> Low Latency Desktop Engine</span>
+            <span class="about-pill"><i class="fab fa-windows"></i> Windows 10 & 11 Certified</span>
+        </div>
+    </div>
+
+    <!-- Live Diagnostics Grid -->
+    <div class="diag-grid">
+        <div class="diag-card">
+            <div class="diag-card-header">
+                <div class="diag-card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span class="badge bg-success bg-opacity-25 text-success rounded-pill px-2 py-1" id="dbHealthStatus">Healthy</span>
+            </div>
+            <div class="diag-card-val" id="dbIntegrityVal">OK (WAL)</div>
+            <div class="diag-card-label">SQLite Database Integrity</div>
+        </div>
+
+        <div class="diag-card">
+            <div class="diag-card-header">
+                <div class="diag-card-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">
+                    <i class="fas fa-hdd"></i>
+                </div>
+                <span class="badge bg-primary bg-opacity-25 text-primary rounded-pill px-2 py-1">Embedded</span>
+            </div>
+            <div class="diag-card-val" id="dbStorageSize">~0.5 MB</div>
+            <div class="diag-card-label">Database File Footprint</div>
+        </div>
+
+        <div class="diag-card">
+            <div class="diag-card-header">
+                <div class="diag-card-icon" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4;">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <span class="badge bg-info bg-opacity-25 text-info rounded-pill px-2 py-1">19 Modules</span>
+            </div>
+            <div class="diag-card-val" id="totalRecordsCount">0 Records</div>
+            <div class="diag-card-label">Total Indexed Database Rows</div>
+        </div>
+
+        <div class="diag-card">
+            <div class="diag-card-header">
+                <div class="diag-card-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <span class="badge bg-warning bg-opacity-25 text-warning rounded-pill px-2 py-1">Active</span>
+            </div>
+            <div class="diag-card-val">AES-Bcrypt</div>
+            <div class="diag-card-label">Session Security Engine</div>
+        </div>
+    </div>
+
+    <!-- Core Architecture Highlights -->
+    <div class="features-grid">
+        <div class="feature-box">
+            <div class="feature-icon-title">
+                <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                <h3 class="feature-title">Standalone App Locking</h3>
+            </div>
+            <p class="feature-desc">
+                Dedicated security sandbox with persistent SQLite lock state (`app_is_locked`), quick PIN verification, and automated background system tray hibernation.
+            </p>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-icon-title">
+                <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                <h3 class="feature-title">Multi-Currency Engine</h3>
+            </div>
+            <p class="feature-desc">
+                Real-time base currency switching across AED, USD, EUR, GBP, SAR, PKR, and INR with instant formatting on invoices, thermal receipts, and accounts.
+            </p>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-icon-title">
+                <div class="feature-icon"><i class="fas fa-user-check"></i></div>
+                <h3 class="feature-title">HR & Automated Payroll</h3>
+            </div>
+            <p class="feature-desc">
+                Comprehensive staff lifecycle management, daily attendance logging, advance loan deductions, and single-click monthly salary slip generation.
+            </p>
+        </div>
+
+        <div class="feature-box">
+            <div class="feature-icon-title">
+                <div class="feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3 class="feature-title">Multi-Format Printing</h3>
+            </div>
+            <p class="feature-desc">
+                Direct silent hardware printing for Standard A4 Invoices, 80mm POS Thermal Receipts, and 58mm Mini Slips with full VAT/TRN compliance.
+            </p>
+        </div>
+    </div>
+
+    <!-- Developer & Technical Specs Card -->
+    <div class="dev-card">
+        <div class="dev-header">
+            <div class="dev-info-group">
+                <div class="dev-avatar">QA</div>
+                <div>
+                    <h3 class="dev-name">Engineer Qasim Ahmad</h3>
+                    <p class="dev-role">Principal Software Architect & Lead Developer</p>
+                </div>
+            </div>
+            <div class="dev-actions">
+                <button type="button" class="btn-about-action" id="btnCopySpecs">
+                    <i class="fas fa-copy"></i> Copy System Specs
+                </button>
+                <a href="mailto:info.virtuspk@gmail.com" class="btn-about-action">
+                    <i class="fas fa-envelope"></i> Contact Support
+                </a>
+            </div>
+        </div>
+
+        <div class="specs-list">
+            <div class="spec-item">
+                <div class="spec-label">Application Runtime</div>
+                <div class="spec-value" id="specElectronVer">Electron v28.2.0</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Backend Engine</div>
+                <div class="spec-value" id="specNodeVer">Node.js Embedded</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Database Architecture</div>
+                <div class="spec-value">SQLite 3 (WAL Multi-threaded)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">UI Design System</div>
+                <div class="spec-value">Glassmorphism Pro + Inter</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">License Mode</div>
+                <div class="spec-value">MIT Open Enterprise</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Database File Path</div>
+                <div class="spec-value text-truncate" id="specDbPath" style="max-width: 220px;" title="SQLite Database Path">rms.db</div>
+            </div>
+        </div>
+
+        <!-- Live Integrity Check Action Bar -->
+        <div class="diag-action-bar">
+            <div class="diag-action-text">
+                <i class="fas fa-shield-check text-success me-1"></i> Run an active SQLite schema integrity and index verification check now.
+            </div>
+            <button type="button" class="btn-run-check" id="btnRunIntegrityCheck">
+                <i class="fas fa-stethoscope"></i> Run System Diagnostic
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="about-footer">
+        &copy; 2026 RMS Enterprise Management Suite &bull; Crafted with precision by <strong>Engineer Qasim Ahmad</strong>. All rights reserved.
+    </div>
+</div>

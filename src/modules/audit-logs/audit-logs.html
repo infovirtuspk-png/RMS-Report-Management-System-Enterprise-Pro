@@ -1,0 +1,61 @@
+<div class="audit-logs-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">System Audit Logs</h1>
+            <p class="text-muted">Immutable system audit trail tracking logins, record creation, modifications, payroll disbursements, and database backups.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-outline" id="btnRefreshAuditLogs">
+                <i class="fas fa-sync-alt"></i> Refresh Trail
+            </button>
+        </div>
+    </div>
+
+    <!-- Filter Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="auditSearchInput" placeholder="Search by description, action, or username...">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="auditModuleFilter">
+                        <option value="">All Business Modules</option>
+                        <option value="AUTH">Authentication</option>
+                        <option value="COMPANY">Company Profile</option>
+                        <option value="STAFF">Staff Management</option>
+                        <option value="INCOME">Income</option>
+                        <option value="EXPENSES">Expenses</option>
+                        <option value="INVOICES">Invoices</option>
+                        <option value="BACKUP">Backup & Restore</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline w-100" id="btnResetAuditFilter"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audit Logs Table -->
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="auditTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Module</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auditTableBody">
+                        <tr><td colspan="5" class="text-center py-4 text-muted">Loading audit records...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

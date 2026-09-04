@@ -1,0 +1,83 @@
+<div class="users-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">User Management & Security</h1>
+            <p class="text-muted">Manage local system user accounts, roles, and administrative security.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary" id="btnAddUser">
+                <i class="fas fa-user-shield"></i> Add New User
+            </button>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Last Login</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr><td colspan="6" class="text-center py-4 text-muted">Loading system users...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="userModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create System User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="userForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label required">Username</label>
+                        <input type="text" class="form-control" id="userUsername" required placeholder="e.g. accountant1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Full Name</label>
+                        <input type="text" class="form-control" id="userFullName" required placeholder="e.g. Sarah Khan">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="userEmail" placeholder="user@company.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Role</label>
+                        <select class="form-select" id="userRoleSelect" required>
+                            <option value="2">Administrator</option>
+                            <option value="3">Manager</option>
+                            <option value="4">Accountant</option>
+                            <option value="5">HR Manager</option>
+                            <option value="6">Staff/User</option>
+                            <option value="7">Viewer</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Password</label>
+                        <input type="password" class="form-control" id="userPassword" required placeholder="Strong password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create User Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

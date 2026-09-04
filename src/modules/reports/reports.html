@@ -1,0 +1,78 @@
+<div class="reports-center-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Executive Reports Center</h1>
+            <p class="text-muted">Comprehensive business intelligence, 360 staff dossiers, sales registers, and financial exports.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-outline me-2" id="btnExportCSV">
+                <i class="fas fa-file-csv"></i> Export CSV
+            </button>
+            <button class="btn btn-primary" id="btnPrintActiveReport">
+                <i class="fas fa-print"></i> Print Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Report Type & Filters -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Report Category / Type:</label>
+                    <select class="form-select" id="reportTypeSelect">
+                        <optgroup label="Financial Reports">
+                            <option value="income_register">Income Register</option>
+                            <option value="expense_register">Expense Register</option>
+                            <option value="profit_loss">Profit & Loss Summary</option>
+                        </optgroup>
+                        <optgroup label="Workforce & HR">
+                            <option value="staff_register">Complete Staff Register</option>
+                            <option value="staff_360">Individual Staff 360 Dossier</option>
+                            <option value="salary_register">Salary Disbursement Register</option>
+                            <option value="advances_register">Salary Advances Register</option>
+                        </optgroup>
+                        <optgroup label="Sales & Revenue">
+                            <option value="invoice_register">Invoice & Sales Register</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="col-md-3" id="staffPickerWrapper" style="display: none;">
+                    <label class="form-label fw-bold">Select Employee:</label>
+                    <select class="form-select" id="reportStaffSelect">
+                        <option value="">Select Employee</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Date From:</label>
+                    <input type="date" class="form-control" id="reportDateFrom">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Date To:</label>
+                    <input type="date" class="form-control" id="reportDateTo">
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" id="btnGenerateReport"><i class="fas fa-play"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Preview Area -->
+    <div class="card">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold" id="reportResultTitle">Report Output</h5>
+            <span class="badge bg-secondary" id="reportRowCountBadge">0 Records</span>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive" id="reportContainer">
+                <table class="table table-hover align-middle mb-0" id="reportDataTable">
+                    <thead id="reportTableHead"></thead>
+                    <tbody id="reportTableBody">
+                        <tr><td class="text-center py-5 text-muted">Select report parameters above and click Generate.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

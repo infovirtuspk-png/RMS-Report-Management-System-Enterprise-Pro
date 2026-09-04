@@ -1,0 +1,77 @@
+<div class="currencies-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Multi-Currency Management</h1>
+            <p class="text-muted">Manage global currencies, base currency configuration, and offline exchange conversion rates.</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary" id="btnAddCurrency">
+                <i class="fas fa-plus"></i> Add New Currency
+            </button>
+        </div>
+    </div>
+
+    <!-- Currency Cards Grid -->
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="currenciesTable">
+                    <thead>
+                        <tr>
+                            <th>Currency Code</th>
+                            <th>Currency Name</th>
+                            <th>Symbol</th>
+                            <th>Exchange Rate (vs Base)</th>
+                            <th>Decimal Places</th>
+                            <th>Base Currency</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="currenciesTableBody">
+                        <tr><td colspan="7" class="text-center py-4 text-muted">Loading currencies...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Currency Modal -->
+<div class="modal fade" id="currencyModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Global Currency</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="currencyForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label required">Currency Code (3 Letters)</label>
+                        <input type="text" class="form-control" id="currCode" maxlength="3" required placeholder="e.g. AED, USD, EUR">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Currency Name</label>
+                        <input type="text" class="form-control" id="currName" required placeholder="e.g. UAE Dirham">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Symbol</label>
+                        <input type="text" class="form-control" id="currSymbol" required placeholder="e.g. د.إ, $, €">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Exchange Rate</label>
+                        <input type="number" step="0.0001" min="0.0001" class="form-control" id="currRate" required value="1.0000">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required">Decimal Places</label>
+                        <input type="number" min="0" max="4" class="form-control" id="currDecimals" required value="2">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Currency</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

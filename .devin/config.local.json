@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(npm start)",
+      "Exec(npm install)"
+    ]
+  }
+}

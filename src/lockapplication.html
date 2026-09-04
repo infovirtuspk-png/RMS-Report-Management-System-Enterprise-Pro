@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: https: file:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' data: https:; img-src 'self' data: https: file:;">
+    <title>RMS — Application Locked</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-glow: rgba(79, 70, 229, 0.4);
+            --bg-dark: #090d16;
+            --card-bg: rgba(15, 23, 42, 0.82);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            color: var(--text-main);
+        }
+
+        /* Ambient Animated Glowing Mesh */
+        .ambient-mesh {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.45;
+            animation: orbFloat 14s infinite alternate ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            top: -120px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 18s;
+            animation-delay: -3s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #d97706 0%, transparent 70%);
+            top: 45%;
+            left: 55%;
+            animation-duration: 12s;
+            animation-delay: -6s;
+            opacity: 0.25;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, -25px) scale(1.08); }
+            100% { transform: translate(-25px, 35px) scale(0.95); }
+        }
+
+        /* Lock Card */
+        .lock-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(25px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .lock-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 36px 32px;
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+            text-align: center;
+        }
+
+        /* Lock Icon */
+        .lock-badge {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+            color: #ffffff;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .lock-badge.unlocked {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .company-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .lock-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        /* User Profile Pill */
+        .user-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 6px 16px 6px 8px;
+            margin-bottom: 24px;
+        }
+
+        .user-avatar-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .user-pill span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        /* Input Container */
+        .input-group-custom {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .input-icon-left {
+            position: absolute;
+            left: 16px;
+            color: #64748b;
+            font-size: 16px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .lock-input {
+            width: 100%;
+            height: 50px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            padding: 0 46px 0 46px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-align: center;
+            transition: all 0.25s ease;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .lock-input::placeholder {
+            color: #64748b;
+            font-size: 13.5px;
+            letter-spacing: normal;
+            font-weight: 400;
+        }
+
+        .lock-input:focus {
+            background: rgba(15, 23, 42, 0.95);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
+        }
+
+        .input-group-custom:focus-within .input-icon-left {
+            color: #818cf8;
+        }
+
+        .eye-toggle-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 16px;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: color 0.2s ease;
+            z-index: 3;
+        }
+
+        .eye-toggle-btn:hover {
+            color: #cbd5e1;
+        }
+
+        /* Unlock Button */
+        .btn-unlock {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            border: none;
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .btn-unlock:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 12px 26px rgba(79, 70, 229, 0.45);
+        }
+
+        .btn-unlock:active {
+            transform: translateY(0);
+        }
+
+        .btn-unlock.loading {
+            background: #475569;
+            pointer-events: none;
+        }
+
+        .btn-unlock.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            pointer-events: none;
+        }
+
+        .unlock-hint {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        .unlock-hint i {
+            color: var(--warning);
+            margin-right: 4px;
+        }
+
+        /* Error Banner */
+        .error-alert {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fca5a5;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 16px;
+            animation: shake 0.4s ease;
+        }
+
+        .error-alert.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* Footer Options */
+        .lock-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .action-link {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 12.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-link:hover {
+            color: #ffffff;
+        }
+
+        .action-link.danger:hover {
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-mesh">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="lock-wrapper">
+        <div class="lock-card">
+            <!-- Icon -->
+            <div class="lock-badge" id="lockBadge">
+                <i class="fas fa-lock" id="lockBadgeIcon"></i>
+            </div>
+
+            <!-- Title -->
+            <h1 class="company-title" id="lockCompanyName">Virtuspk</h1>
+            <p class="lock-subtitle">Session Secured &bull; Enter PIN or Password to Resume</p>
+
+            <!-- User Pill -->
+            <div class="user-pill">
+                <div class="user-avatar-circle" id="lockUserAvatar">A</div>
+                <span id="lockUserName">Administrator</span>
+            </div>
+
+            <!-- Error message -->
+            <div class="error-alert" id="errorAlert">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorAlertText">Invalid PIN or Password</span>
+            </div>
+
+            <!-- Form -->
+            <form id="lockForm" onsubmit="return false;">
+                <div class="input-group-custom">
+                    <i class="fas fa-key input-icon-left"></i>
+                    <input 
+                        type="password" 
+                        class="lock-input" 
+                        id="unlockPassword" 
+                        placeholder="Enter PIN or Password" 
+                        autocomplete="off" 
+                        autofocus
+                        required
+                    >
+                    <button type="button" class="eye-toggle-btn" id="togglePasswordBtn" title="Toggle Visibility">
+                        <i class="fas fa-eye" id="eyeIcon"></i>
+                    </button>
+                </div>
+
+                <button type="submit" class="btn-unlock" id="btnUnlock">
+                    <i class="fas fa-unlock-alt" id="unlockIcon"></i>
+                    <span id="unlockBtnText">Unlock Application</span>
+                </button>
+
+                <div class="unlock-hint">
+                    <i class="fas fa-key"></i> Enter your password or PIN and press Enter or click Unlock
+                </div>
+            </form>
+
+            <!-- Bottom Actions -->
+            <div class="lock-actions">
+                <button type="button" class="action-link" id="btnSwitchUser">
+                    <i class="fas fa-arrow-right-from-bracket"></i>
+                    Switch User / Login
+                </button>
+                <button type="button" class="action-link danger" id="btnExitApp">
+                    <i class="fas fa-power-off"></i>
+                    Exit RMS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const api = window.electronAPI;
+        const input = document.getElementById('unlockPassword');
+        const form = document.getElementById('lockForm');
+        const btnUnlock = document.getElementById('btnUnlock');
+        const unlockBtnText = document.getElementById('unlockBtnText');
+        const unlockIcon = document.getElementById('unlockIcon');
+        const lockBadge = document.getElementById('lockBadge');
+        const lockBadgeIcon = document.getElementById('lockBadgeIcon');
+        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorAlertText = document.getElementById('errorAlertText');
+        const btnSwitchUser = document.getElementById('btnSwitchUser');
+        const btnExitApp = document.getElementById('btnExitApp');
+
+        let isVerifying = false;
+        let lastTargetPage = 'dashboard';
+
+        // Load dynamic lock info
+        async function loadLockInfo() {
+            try {
+                if (api && api.app && api.app.getLockInfo) {
+                    const info = await api.app.getLockInfo();
+                    if (info.company && info.company.company_name) {
+                        document.getElementById('lockCompanyName').textContent = info.company.company_name;
+                    }
+                    if (info.user) {
+                        const name = info.user.full_name || info.user.username || 'Administrator';
+                        document.getElementById('lockUserName').textContent = name;
+                        const initials = name.split(' ').map(p => p[0]).join('').substring(0, 2).toUpperCase();
+                        document.getElementById('lockUserAvatar').textContent = initials;
+                    }
+                    if (info.lastPage) {
+                        lastTargetPage = info.lastPage;
+                    }
+                }
+            } catch (err) {
+                console.error('Error loading lock info:', err);
+            }
+        }
+
+        // Focus input
+        function focusInput() {
+            input.focus();
+            if (document.activeElement !== input) {
+                setTimeout(focusInput, 50);
+            }
+        }
+
+        // Toggle password eye
+        let isRevealed = false;
+        togglePasswordBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isRevealed = !isRevealed;
+            input.type = isRevealed ? 'text' : 'password';
+            eyeIcon.className = isRevealed ? 'fas fa-eye-slash' : 'fas fa-eye';
+            focusInput();
+        });
+
+        // Show error
+        function showError(msg) {
+            isVerifying = false;
+            btnUnlock.classList.remove('loading');
+            unlockIcon.className = 'fas fa-unlock-alt';
+            unlockBtnText.textContent = 'Unlock Application';
+            errorAlertText.textContent = msg || 'Invalid PIN or Password';
+            errorAlert.classList.remove('show');
+            void errorAlert.offsetWidth; // Reflow for animation
+            errorAlert.classList.add('show');
+            input.focus();
+        }
+
+        // Attempt Unlock
+        async function executeUnlock() {
+            if (isVerifying) return;
+            const val = input.value;
+            if (!val || !val.trim()) {
+                showError('Please enter your PIN or Password.');
+                return;
+            }
+
+            isVerifying = true;
+            errorAlert.classList.remove('show');
+            btnUnlock.classList.add('loading');
+            unlockIcon.className = 'fas fa-spinner fa-spin';
+            unlockBtnText.textContent = 'Verifying...';
+
+            try {
+                const result = await api.app.unlock(val);
+                if (result && result.success) {
+                    btnUnlock.classList.remove('loading');
+                    btnUnlock.classList.add('success');
+                    unlockIcon.className = 'fas fa-check';
+                    unlockBtnText.textContent = 'Access Granted!';
+                    lockBadge.classList.add('unlocked');
+                    lockBadgeIcon.className = 'fas fa-unlock';
+
+                    // Navigate to index.html
+                    setTimeout(() => {
+                        api.app.navigate('index.html');
+                    }, 400);
+                } else {
+                    showError(result?.message || 'Invalid PIN or Password.');
+                }
+            } catch (err) {
+                showError(err.message || 'Verification failed.');
+            }
+        }
+
+        // Clear error as user types
+        input.addEventListener('input', () => {
+            errorAlert.classList.remove('show');
+        });
+
+        // Enter key to submit
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeUnlock();
+            }
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            executeUnlock();
+        });
+
+        // Switch user (Logout to Login page)
+        btnSwitchUser.addEventListener('click', async () => {
+            try {
+                if (api && api.auth && api.auth.logout) {
+                    await api.auth.logout();
+                }
+                api.app.navigate('login.html');
+            } catch (_) {
+                api.app.navigate('login.html');
+            }
+        });
+
+        // Exit App
+        btnExitApp.addEventListener('click', () => {
+            if (api && api.app && api.app.close) {
+                api.app.close();
+            }
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            loadLockInfo();
+            setTimeout(focusInput, 100);
+        });
+    </script>
+</body>
+</html>

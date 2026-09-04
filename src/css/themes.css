@@ -1,0 +1,331 @@
+/* ============================================
+   RMS - Professional Themes
+   ============================================ */
+
+/* Theme 1: Professional Light (Default) */
+.theme-professional-light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --border-color: #dee2e6;
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --success-color: #198754;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #212529;
+    --sidebar-active: #0d6efd;
+    --sidebar-active-text: #ffffff;
+    --card-bg: #ffffff;
+    --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --table-bg: #ffffff;
+    --table-striped: #f8f9fa;
+    --table-hover: #f1f3f5;
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --modal-bg: #ffffff;
+    --modal-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* Theme 2: Professional Dark */
+.theme-professional-dark {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-tertiary: #0f3460;
+    --text-primary: #eaeaea;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6b6b6b;
+    --border-color: #2d3748;
+    --primary-color: #e94560;
+    --primary-hover: #ff6b6b;
+    --success-color: #00b894;
+    --warning-color: #fdcb6e;
+    --danger-color: #d63031;
+    --info-color: #74b9ff;
+    --sidebar-bg: #16213e;
+    --sidebar-text: #eaeaea;
+    --sidebar-active: #e94560;
+    --sidebar-active-text: #ffffff;
+    --card-bg: #1a1a2e;
+    --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+    --table-bg: #1a1a2e;
+    --table-striped: #16213e;
+    --table-hover: #0f3460;
+    --input-bg: #16213e;
+    --input-border: #2d3748;
+    --modal-bg: #1a1a2e;
+    --modal-backdrop: rgba(0, 0, 0, 0.7);
+}
+
+/* Theme 3: Ocean Blue */
+.theme-ocean-blue {
+    --bg-primary: #f0f8ff;
+    --bg-secondary: #e6f3ff;
+    --bg-tertiary: #cce5ff;
+    --text-primary: #1a365d;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #bee3f8;
+    --primary-color: #3182ce;
+    --primary-hover: #2c5282;
+    --success-color: #38a169;
+    --warning-color: #d69e2e;
+    --danger-color: #e53e3e;
+    --info-color: #3182ce;
+    --sidebar-bg: #1a365d;
+    --sidebar-text: #e2e8f0;
+    --sidebar-active: #63b3ed;
+    --sidebar-active-text: #1a365d;
+    --card-bg: #ffffff;
+    --card-shadow: 0 0.125rem 0.25rem rgba(49, 130, 206, 0.15);
+    --table-bg: #ffffff;
+    --table-striped: #ebf8ff;
+    --table-hover: #e6f3ff;
+    --input-bg: #ffffff;
+    --input-border: #bee3f8;
+    --modal-bg: #ffffff;
+    --modal-backdrop: rgba(26, 54, 93, 0.5);
+}
+
+/* Theme 4: Emerald */
+.theme-emerald {
+    --bg-primary: #f0fff4;
+    --bg-secondary: #e6ffed;
+    --bg-tertiary: #c6f6d5;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #c6f6d5;
+    --primary-color: #38a169;
+    --primary-hover: #2f855a;
+    --success-color: #38a169;
+    --warning-color: #d69e2e;
+    --danger-color: #e53e3e;
+    --info-color: #3182ce;
+    --sidebar-bg: #1a202c;
+    --sidebar-text: #e2e8f0;
+    --sidebar-active: #48bb78;
+    --sidebar-active-text: #1a202c;
+    --card-bg: #ffffff;
+    --card-shadow: 0 0.125rem 0.25rem rgba(56, 161, 105, 0.15);
+    --table-bg: #ffffff;
+    --table-striped: #f0fff4;
+    --table-hover: #e6ffed;
+    --input-bg: #ffffff;
+    --input-border: #c6f6d5;
+    --modal-bg: #ffffff;
+    --modal-backdrop: rgba(26, 32, 44, 0.5);
+}
+
+/* Theme 5: Royal Purple */
+.theme-royal-purple {
+    --bg-primary: #faf5ff;
+    --bg-secondary: #f3e8ff;
+    --bg-tertiary: #d9b8ff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #d9b8ff;
+    --primary-color: #805ad5;
+    --primary-hover: #6b46c1;
+    --success-color: #38a169;
+    --warning-color: #d69e2e;
+    --danger-color: #e53e3e;
+    --info-color: #3182ce;
+    --sidebar-bg: #1a1a2e;
+    --sidebar-text: #e2e8f0;
+    --sidebar-active: #9f7aea;
+    --sidebar-active-text: #1a1a2e;
+    --card-bg: #ffffff;
+    --card-shadow: 0 0.125rem 0.25rem rgba(128, 90, 213, 0.15);
+    --table-bg: #ffffff;
+    --table-striped: #faf5ff;
+    --table-hover: #f3e8ff;
+    --input-bg: #ffffff;
+    --input-border: #d9b8ff;
+    --modal-bg: #ffffff;
+    --modal-backdrop: rgba(26, 26, 46, 0.5);
+}
+
+/* Theme 6: Midnight */
+.theme-midnight {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --border-color: #30363d;
+    --primary-color: #58a6ff;
+    --primary-hover: #1f6feb;
+    --success-color: #3fb950;
+    --warning-color: #d29922;
+    --danger-color: #f85149;
+    --info-color: #58a6ff;
+    --sidebar-bg: #0d1117;
+    --sidebar-text: #e6edf3;
+    --sidebar-active: #1f6feb;
+    --sidebar-active-text: #ffffff;
+    --card-bg: #161b22;
+    --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
+    --table-bg: #161b22;
+    --table-striped: #0d1117;
+    --table-hover: #21262d;
+    --input-bg: #0d1117;
+    --input-border: #30363d;
+    --modal-bg: #161b22;
+    --modal-backdrop: rgba(0, 0, 0, 0.8);
+}
+
+/* Theme 7: Graphite */
+.theme-graphite {
+    --bg-primary: #2d3748;
+    --bg-secondary: #1a202c;
+    --bg-tertiary: #4a5568;
+    --text-primary: #f7fafc;
+    --text-secondary: #cbd5e0;
+    --text-muted: #a0aec0;
+    --border-color: #4a5568;
+    --primary-color: #ed8936;
+    --primary-hover: #dd6b20;
+    --success-color: #48bb78;
+    --warning-color: #ecc94b;
+    --danger-color: #f56565;
+    --info-color: #4299e1;
+    --sidebar-bg: #1a202c;
+    --sidebar-text: #f7fafc;
+    --sidebar-active: #ed8936;
+    --sidebar-active-text: #1a202c;
+    --card-bg: #2d3748;
+    --card-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+    --table-bg: #2d3748;
+    --table-striped: #1a202c;
+    --table-hover: #4a5568;
+    --input-bg: #1a202c;
+    --input-border: #4a5568;
+    --modal-bg: #2d3748;
+    --modal-backdrop: rgba(0, 0, 0, 0.7);
+}
+
+/* Apply theme variables to body */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global theme application */
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table {
+    background-color: var(--table-bg);
+    color: var(--text-primary);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    color: var(--text-primary);
+    background-color: var(--table-striped);
+}
+
+.table-hover > tbody > tr:hover > * {
+    color: var(--text-primary);
+    background-color: var(--table-hover);
+}
+
+.form-control {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--input-bg);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-primary);
+}
+
+.modal-backdrop {
+    background-color: var(--modal-backdrop);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.border {
+    border-color: var(--border-color) !important;
+}
+
+/* Sidebar theme application */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-menu .menu-item {
+    color: var(--sidebar-text);
+}
+
+.sidebar-menu .menu-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.sidebar-menu .menu-item.active {
+    background-color: var(--sidebar-active);
+    color: var(--sidebar-active-text);
+}
+
+/* Top navigation theme application */
+.top-navbar {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.company-name {
+    color: var(--text-primary);
+}
+
+/* Theme transition */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
