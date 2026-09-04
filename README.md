@@ -1,10 +1,16 @@
 # 🚀 RMS — Report Management System (Enterprise Pro)
 
-[![Version](https://img.shields.io/badge/version-2.4.0--Pro-blue.svg)](https://github.com/)
+[![Version](https://img.shields.io/badge/version-1.0.0--Pro-blue.svg)](https://github.com/infovirtuspk-png/RMS-Report-Management-System-Enterprise-Pro-/releases/tag/v1.0.0)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078d7.svg)](https://microsoft.com/windows)
 [![Database](https://img.shields.io/badge/database-SQLite%203%20(WAL)-003b57.svg)](https://sqlite.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Offline](https://img.shields.io/badge/mode-100%25%20Offline%20Desktop-success.svg)]()
+
+## 📥 Download Latest Release
+
+[![Download](https://img.shields.io/badge/Download-Setup%20v1.0.0-brightgreen.svg?style=for-the-badge&logo=windows)](https://github.com/infovirtuspk-png/RMS-Report-Management-System-Enterprise-Pro-/releases/download/v1.0.0/RMS-Report-Management-System-Setup-1.0.0.exe)
+
+**Click the button above to download the Windows installer (.exe)**
 
 > **RMS (Report Management System)** is a state-of-the-art, 100% offline enterprise desktop management and business intelligence suite built for Windows. Designed with an ultra-modern glassmorphic UI, rich animations, real-time telemetry, and an embedded high-concurrency SQLite WAL engine.
 
