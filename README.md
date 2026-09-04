@@ -12,6 +12,15 @@
 
 **Click the button above to download the Windows installer (.exe)**
 
+### 🔐 File Verification (SHA256)
+```
+5a6f18558c5ab6e4b663292327819cdad22feff16e2b143c4569a193c94005ce
+```
+Verify the downloaded file integrity using:
+```powershell
+certutil -hashfile "RMS-Report-Management-System-Setup-1.0.0.exe" SHA256
+```
+
 > **RMS (Report Management System)** is a state-of-the-art, 100% offline enterprise desktop management and business intelligence suite built for Windows. Designed with an ultra-modern glassmorphic UI, rich animations, real-time telemetry, and an embedded high-concurrency SQLite WAL engine.
 
 ---
